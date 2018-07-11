@@ -3,7 +3,7 @@ import { NotesModule } from '@sunbird/notes';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SuiModule } from 'ng2-semantic-ui';
 import { CommonModule } from '@angular/common';
 import { CommunityModule } from '@sunbird/community';
@@ -30,6 +30,7 @@ import { BadgingModule } from '@sunbird/badge';
 import { CacheService } from 'ng2-cache-service';
 import { CacheStorageAbstract } from 'ng2-cache-service/dist/src/services/storage/cache-storage-abstract.service';
 import {CacheMemoryStorage} from 'ng2-cache-service/dist/src/services/storage/memory/cache-memory.service';
+import { ResponseInterceptor } from './modules/shared/interceptors/ResponseInterceptor';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {CacheMemoryStorage} from 'ng2-cache-service/dist/src/services/storage/me
   providers: [
     CacheService,
     {provide: CacheStorageAbstract, useClass: CacheMemoryStorage},
+    {provide:HTTP_INTERCEPTORS,useClass:ResponseInterceptor,multi:true},
   ]
 })
 export class AppModule {

@@ -5,12 +5,21 @@
   </div>
   <div class="five wide column">
       <div class="ui left aligned container landing-page-description">
-          <p>In 2000, ten years later, the international community met again at the World Education Forum in Dakar, Senegal, an event which drew 1100 participants.</p>
-          <p>The forum took stock of the fact that many countries were far from having reached the goals established at the World Conference on Education for All in 1990.</p><br/>
-          <p>The participants agreed on the Dakar Framework for Action which re-affirmed their commitment to achieving Education for All by the year 2015, and identified six key measurable education goals which aim to meet the learning needs of all children,
-              youth and adults by 2015.</p><br/>
-          <a class="expand-or-minimize">Read More > </a>
-      </div>
+              <p *ngIf="!readMore">{{homepageContent}}</p>
+              <br/>
+              <p *ngIf="!readMore">{{homepageContentP1}}</p>
+              <span class="ui cardsKnowMore mouse-pointer" *ngIf="readMore === false" (click)="readMore = !readMore;">...Read More</span>
+            
+            <p *ngIf="readMore"> {{homepageContent}} </p>
+                <br/>
+                <p *ngIf="readMore">{{homepageContentP1}}</p>
+                <br/>
+                <p *ngIf="readMore">{{homepageContentP2}}</p>
+                <br/>
+                <p *ngIf="readMore">{{homepageContentP3}}</p>
+             <span *ngIf="readMore" class="ui cardsKnowMore mouse-pointer" (click)="readMore = false;">Read Less...</span>
+            
+    </div>
   </div>
   <div class="one wide column"></div>
 </div>
@@ -70,14 +79,14 @@
                   <div class="ui relaxed divided list">
                       <div class="item">
                           <div class="content">
-                            <a class="header text-decoration-underline">Exam Date Announced </a><br>
-                            <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div>
+                            <a class="header text-decoration-underline" href="http://www.indiawaterportal.org/opportunities" target="blank">India Waterportal Opportunities </a><br>
+                            <!-- <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div> -->
                           </div>
                       </div><br/>               
                       <div class="item">
                           <div class="content"><br/> 
-                            <a class="header text-decoration-underline">Exam Date Announced </a><br>
-                            <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div>
+                            <a class="header text-decoration-underline" href="http://www.indiawaterportal.org/news" target="blank">India Waterportal News </a><br>
+                            <!-- <div class="description">An excellent polish restaurant, quick delivery and hearty, filling meals.</div> -->
                           </div>
                       </div>
                   </div>

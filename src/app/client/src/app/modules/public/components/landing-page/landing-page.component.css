@@ -20,8 +20,11 @@
 .ui.card>.card-opacity {
     opacity: 0.2;
 }
+.ui.card>.card-opacity-descrptn {
+    opacity: 0.5;
+}
 .ui.card .article-header-padding {
-    padding: 0 0 1em 1em;
+    padding: 7px 0 1em 1em;
     font-family: 'sunbirdboldfont';
     font-size: 1.25em;
 }

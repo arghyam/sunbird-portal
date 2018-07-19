@@ -28,3 +28,12 @@
     font-family: 'sunbirdboldfont';
     font-size: 1.25em;
 }
+
+.ui.list>.item a.header {
+    cursor: pointer;
+    color: #009fda!important;
+}
+
+.ui.list>.item a:hover {
+    color: #00b2f3!important;
+}

@@ -126,29 +126,17 @@ export class UserUploadComponent implements OnInit, OnDestroy {
           { instructions: this.resourceService.frmelmnts.instn.t0034 },
           { instructions: this.resourceService.frmelmnts.instn.t0035 },
           { instructions: this.resourceService.frmelmnts.instn.t0036 },
-          { instructions: this.resourceService.frmelmnts.instn.t0037 }
-        ]
-      },
-      {
-        instructions: this.resourceService.frmelmnts.instn.t0038,
-        subinstructions: [
+          { instructions: this.resourceService.frmelmnts.instn.t0037 },
           { instructions: this.resourceService.frmelmnts.instn.t0039 },
-          { instructions: this.resourceService.frmelmnts.instn.t0040 },
-          { instructions: this.resourceService.frmelmnts.instn.t0041 },
-          { instructions: this.resourceService.frmelmnts.instn.t0042 },
-          { instructions: this.resourceService.frmelmnts.instn.t0043 },
-          { instructions: this.resourceService.frmelmnts.instn.t0044 },
-          { instructions: this.resourceService.frmelmnts.instn.t0045 },
-          { instructions: this.resourceService.frmelmnts.instn.t0046 },
-          { instructions: this.resourceService.frmelmnts.instn.t0047 },
+          { instructions: this.resourceService.frmelmnts.instn.t0068 },
           { instructions: this.resourceService.frmelmnts.instn.t0048 },
-          { instructions: this.resourceService.frmelmnts.instn.t0066 },
-          { instructions: this.resourceService.frmelmnts.instn.t0067 }
+          { instructions: this.resourceService.frmelmnts.instn.t0069 },
+          { instructions: this.resourceService.frmelmnts.instn.t0072 }
         ]
       },
-      { instructions: this.resourceService.frmelmnts.instn.t0065 }];
-    this.showLoader = false;
-    this.telemetryImpression = {
+      { instructions: this.resourceService.frmelmnts.instn.t0070 }];
+        this.showLoader = false;
+        this.telemetryImpression = {
       context: {
         env: this.activatedRoute.snapshot.data.telemetry.env
       },

@@ -383,33 +383,16 @@
         "email": "email",
         "userName": "userName",
         "password": "password",
-        "provider": "provider",
-        "externalId": "externalId",
         "phoneVerified": "phoneVerified",
-        "roles": "roles",
-        "position": "position",
-        "grade": "grade",
-        "location": "location",
-        "dob": "dob",
-        "gender": "gender",
-        "language": "language",
-        "profileSummary": "profileSummary",
-        "subject": "subject"
+        "emailVerified": "emailVerified",
+        "roles": "roles"
       }
     ],
     "SAMPLE_ORGANIZATION_CSV": [
       {
         "orgName": "orgName",
         "isRootOrg": "isRootOrg",
-        "channel": "channel",
-        "externalId": "externalId",
-        "provider": "provider",
-        "description": "description",
-        "homeUrl": "homeUrl",
-        "orgCode": "orgCode",
-        "orgType": "orgType",
-        "preferredLanguage": "preferredLanguage",
-        "contactDetail": "contactDetail"
+        "description": "description"
       }
     ]
   },

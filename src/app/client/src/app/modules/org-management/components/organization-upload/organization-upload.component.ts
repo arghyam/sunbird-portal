@@ -90,23 +90,8 @@ export class OrganizationUploadComponent implements OnInit, OnDestroy {
       { instructions: this.resourceService.frmelmnts.instn.t0002 },
       { instructions: this.resourceService.frmelmnts.instn.t0007 },
       { instructions: this.resourceService.frmelmnts.instn.t0021 },
-      {
-        instructions: this.resourceService.frmelmnts.instn.t0022,
-        subinstructions: [
-          { instructions: this.resourceService.frmelmnts.instn.t0023 },
-          { instructions: this.resourceService.frmelmnts.instn.t0024 },
-          { instructions: this.resourceService.frmelmnts.instn.t0025 },
-          { instructions: this.resourceService.frmelmnts.instn.t0026 },
-          { instructions: this.resourceService.frmelmnts.instn.t0027 },
-          { instructions: this.resourceService.frmelmnts.instn.t0028 },
-          { instructions: this.resourceService.frmelmnts.instn.t0029 },
-          { instructions: this.resourceService.frmelmnts.instn.t0030 },
-          { instructions: this.resourceService.frmelmnts.instn.t0031 },
-          { instructions: this.resourceService.frmelmnts.instn.t0032 },
-          { instructions: this.resourceService.frmelmnts.instn.t0049 },
-          { instructions: this.resourceService.frmelmnts.instn.t0050 }
-        ]
-      }
+      { instructions: this.resourceService.frmelmnts.instn.t0071 },
+      { instructions: this.resourceService.frmelmnts.instn.t0027 },
     ];
     this.telemetryImpression = {
       context: {

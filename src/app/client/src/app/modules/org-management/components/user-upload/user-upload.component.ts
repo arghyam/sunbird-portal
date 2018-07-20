@@ -180,6 +180,8 @@ export class UserUploadComponent implements OnInit, OnDestroy {
       decimalseparator: '.',
       showLabels: true
     };
+
+    console.log('configggg',this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_CSV)
     const csv = new Angular2Csv(this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_CSV, 'Sample_Users', options);
   }
   /**

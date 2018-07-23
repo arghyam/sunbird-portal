@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/co
 import { ResourceService, ToasterService, ServerResponse, ConfigService } from '@sunbird/shared';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrgManagementService } from '../../services';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 import { IInteractEventInput, IImpressionEventInput, IInteractEventEdata, IInteractEventObject } from '@sunbird/telemetry';
 import { UserService } from '@sunbird/core';
 
@@ -123,9 +123,10 @@ export class OrganizationUploadComponent implements OnInit, OnDestroy {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalseparator: '.',
-      showLabels: true
+      showLabels: true,
+      headers: this.config.appConfig.ADMIN_UPLOAD.SAMPLE_ORGANIZATION_HEADERS_CSV
     };
-    const csv = new Angular2Csv(this.config.appConfig.ADMIN_UPLOAD.SAMPLE_ORGANIZATION_CSV, 'Sample_Organizations', options);
+    const csv = new Angular5Csv({}, 'Sample_Organizations', options);
   }
   /**
  * This method helps to call uploadOrg method to upload a csv file

@@ -394,6 +394,22 @@
         "isRootOrg": "isRootOrg",
         "description": "description"
       }
+    ],
+    "SAMPLE_USER_HEADERS_CSV": [
+        "firstName",
+        "lastName",
+        "phone",
+        "email",
+        "userName",
+        "password",
+        "phoneVerified",
+        "emailVerified",
+        "roles"
+    ],
+    "SAMPLE_ORGANIZATION_HEADERS_CSV":[
+      "orgName",
+      "isRootOrg",
+      "description"
     ]
   },
   "contentCreateType": {

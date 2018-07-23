@@ -167,10 +167,11 @@ export class UserUploadComponent implements OnInit, OnDestroy {
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
-      headers: this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_HEADERS_CSV
+      headers: this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_HEADERS_CSV,
+      useBom: false
     };
 
-    console.log('configggg',this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_HEADERS_CSV)
+    console.log('configggg', this.config.appConfig.ADMIN_UPLOAD.SAMPLE_USER_HEADERS_CSV);
     const csv = new Angular5Csv({}, 'Sample_Users', options);
   }
   /**

@@ -64,6 +64,8 @@ export class RequestChangesPopupComponent implements OnInit {
    */
   checkListData: any;
 
+  checkboolen: any;
+
   /**
 	 * Constructor to create injected service(s) object
 	 *
@@ -91,18 +93,34 @@ export class RequestChangesPopupComponent implements OnInit {
     this.routerNavigationService = routerNavigationService;
     this.contentService = contentService;
     this.checkListData = this.configService.appConfig.CHECK_LIST_CONFIG;
+    this.checkboolen = false;
   }
 
   /**
    * This method pushes all the checked reason into a array
    */
   createCheckedArray(checkedItem) {
+    console.log('checked item', checkedItem)
     if (checkedItem && (_.indexOf(this.reasons, checkedItem) === -1)) {
+      this.checkboolen = true;
       this.reasons.push(checkedItem);
     } else if (checkedItem && (_.indexOf(this.reasons, checkedItem) !== -1)) {
+      this.checkboolen = false;
       this.reasons.splice(_.indexOf(this.reasons, checkedItem), 1);
     }
     this.validateModal();
+  }
+
+    /**
+   * This method pushes all the checked reason into a array
+   */
+  checkedArray(checkedItem) {
+    console.log('checked item', checkedItem)
+    if (checkedItem && (_.indexOf(this.reasons, checkedItem) === -1)) {
+      return false;
+    } else if (checkedItem && (_.indexOf(this.reasons, checkedItem) !== -1)) {
+      return true;
+    }
   }
 
   /**

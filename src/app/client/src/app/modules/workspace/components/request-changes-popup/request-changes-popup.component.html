@@ -15,12 +15,12 @@
         <div class="ui three column grid">
             <div class="column" *ngFor="let list of checkListData.reject.contents">
                 <h5 class="ui tiny header">{{list.name}}</h5>
-                <div class="ui list" *ngFor="let item of list.checkList">
+                <div class="ui list" *ngFor="let item of list.checkList; let i=index">
                     <div class="item">
-                        <div class="ui checkbox checklist">
-                            <input type="checkbox" class="listItem" (click)="createCheckedArray(item)">
-                            <label>{{item}}</label>
-                        </div>
+                            <div class="ui checkbox" (click)="createCheckedArray(item)">
+                                <input class="listItem" name="{{i}}" type="checkbox" [checked]="checkedArray(item)">
+                                <label>{{item}}</label>
+                            </div>
                     </div>
                 </div>
             </div>

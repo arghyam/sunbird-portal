@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RssfeedService } from './../../services';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,11 +12,13 @@ export class LandingPageComponent implements OnInit {
   homepageContentP1: any;
   homepageContentP2: any;
   homepageContentP3: any;
+  rssFeedNews:any;
 
-  constructor() { }
+  constructor(public rssfeedService: RssfeedService) { }
 
   ngOnInit() {
     this.getHomepageContent();
+    this.getNewsRssFeed();
   }
 
   getHomepageContent(){
@@ -28,6 +31,14 @@ export class LandingPageComponent implements OnInit {
     this.homepageContentP3 = 'Societal Platforms are built on elegant yet light digital infrastructure; they create spaces for co-creation and participation by all entities with a stake in positive change – from state institutions and entrepreneurs to non-profits or individual citizens.'
     +'Developed with the right design principles and methods, Societal Platforms present a significant opportunity to reimagine societal transformation. The aim is to answer, for a specific mission: How might we design and develop Societal Platforms, as public goods, that enable open innovation for societal development?'
     +' How can such a societal infrastructure amplify the benefits of societal initiatives across all segments of our society? How can a digital infrastructure support rapid evolution and adoption of innovations in multiple sectors such as education, healthcare, and financial inclusion? How can Societal Platforms help the network of societal actors move from their existing equilibrium to the desired one?'
+  }
+
+  getNewsRssFeed(){
+    this.rssfeedService.getNewsFeed().subscribe(
+      (data) => {
+          console.log('rss feed', data.result)
+          this.rssFeedNews = data.result
+       });
   }
 
 }

@@ -366,6 +366,9 @@ app.use('/resourcebundles/v1', bodyParser.urlencoded({ extended: false }),
   bodyParser.json({ limit: '50mb' }), require('./helpers/resourceBundles')(express))
 
 
+// Handle content share request
+require('./helpers/rssfeed/rssfeed.news.controller')(app)
+
 // redirect to home if nothing found
 app.all('*', function (req, res) {
   res.redirect('/')

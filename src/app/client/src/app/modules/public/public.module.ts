@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GetComponent } from './components/get/get.component';
 import { DialCodeComponent } from './components/dial-code/dial-code.component';
 import { PublicFooterComponent } from './components/public-footer/public-footer.component';
-import { SignupService, PublicPlayerService, OrgManagementService } from './services';
+import { SignupService, PublicPlayerService, OrgManagementService, RssfeedService } from './services';
 import { SharedModule } from '@sunbird/shared';
 // import { DiscussionModule } from '@sunbird/discussion';
 import { PublicRoutingModule } from './public-routing.module';
@@ -36,6 +36,6 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   ],
   declarations: [LandingPageComponent, SignupComponent, GetComponent, DialCodeComponent,
     PublicFooterComponent, PublicContentPlayerComponent, PublicCollectionPlayerComponent, ExploreContentComponent],
-  providers: [SignupService, PublicPlayerService, OrgManagementService, DeviceDetectorService]
+  providers: [SignupService, PublicPlayerService, OrgManagementService, DeviceDetectorService, RssfeedService]
 })
 export class PublicModule { }

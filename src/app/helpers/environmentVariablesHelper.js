@@ -36,7 +36,10 @@ let envVariables = {
   learner_Service_Local_BaseUrl: env.sunbird_learner_service_local_base_url || 'http://learner-service:9000',
   content_Service_Local_BaseUrl: env.sunbird_content_service_local_base_url || 'http://content_service_content_service:5000',
   ANDROID_APP_URL: env.sunbird_android_app_url || 'http://www.sunbird.org',
-  EXPLORE_BUTTON_VISIBILITY: env.sunbird_explore_button_visibility || true
+  EXPLORE_BUTTON_VISIBILITY: env.sunbird_explore_button_visibility || true,
+  JALDHARA_NEWS_RSS_FEED_URL: env.jaldhara_news_rssfeed_url || 'http://www.indiawaterportal.org/articles/feed',
+  JALDHARA_OPPORTUNITIES_RSS_FEED_URL: env.jaldhara_opportunities_rssfeed_url || 'http://www.indiawaterportal.org/rss-opportunities-feed'
+
 }
 
 envVariables.PORTAL_CASSANDRA_URLS = (env.sunbird_cassandra_urls && env.sunbird_cassandra_urls !== '')

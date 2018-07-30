@@ -121,6 +121,19 @@ export class PublishedPopupComponent implements OnInit {
     this.validateModal();
   }
 
+
+  /**
+   * This method checked reason into a array
+   */
+  checkedArray(checkedItem) {
+    console.log('checked item', checkedItem)
+    if (checkedItem && (_.indexOf(this.reasons, checkedItem) === -1)) {
+      return false;
+    } else if (checkedItem && (_.indexOf(this.reasons, checkedItem) !== -1)) {
+      return true;
+    }
+  }
+
   /**
    * This method checks whether the length of comments is greater than zero.
    * It also checks whether a reject reason is checked.

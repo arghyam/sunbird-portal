@@ -32,55 +32,18 @@
               <a class="expand-or-minimize right-float" href="http://www.indiawaterportal.org/news" target="blank">View All</a>
           </div><br>
           <div class="ui two stackable cards">
-              <div class="ui card">
+              <div class="ui card" *ngFor="let newsContent of rssFeedNews | slice:0:4;">
                     <h4 class="article-header-padding">
-                            <a class="header" href="https://www.news18.com/news/india/monsoon-rains-wash-away-water-sharing-woes-between-karnataka-tamil-nadu-1811785.html" target="blank">
-                              Monsoon Rains Wash Away Water-Sharing Woes Between Karnataka, Tamil Nadu
+                            <a class="header" href="{{newsContent.link}}" target="blank">
+                              {{newsContent.title}}
                             </a>
                      </h4>
                   <div class="content card-opacity-descrptn">
                       <div class="description">
-                          <p>All the dams in the Cauvery basin, including Krishna Raja Sagara (KRS), have almost reached their capacity because of the monsoon showers.</p>
+                          <p>{{newsContent.description}}</p>
                       </div>
                   </div>
-              </div>
-              <div class="ui card">
-                <h4 class="article-header-padding">
-                    <a class="header" href="https://www.downtoearth.org.in/news/environment/uranium-contamination-in-punjab-could-be-due-to-geological-processes-study-61134" target="blank">
-                        Uranium contamination in Punjab could be due to geological processes: study
-                    </a>    
-                </h4>
-                  <div class="content card-opacity-descrptn">
-                      <div class="description">
-                          <p>The latest study argues that uranium leaching from the Himalayan granite rocks has possibly contaminated Punjab's groundwater</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="ui card">
-                    <h4 class="article-header-padding">
-                      <a class="header" href="http://www.freepressjournal.in/mumbai/mumbai-rains-37000-million-litres-of-water-wasted-bmc-to-treat-sewage-water-for-non-potable-purposes/1314095" target="blank">
-                        Mumbai rains: 37,000 million litres of water wasted! BMC to treat sewage water for non-potable purposes
-                      </a>
-                    </h4>
-                  <div class="content card-opacity-descrptn">
-                      <div class="description">
-                          <p>In order to protect the marine life and stopping the sea from getting dirtier due to sewage water and floodwaters, the civic body will resort to old proposal of treating the sewage water.</p>
-                      </div>
-                  </div>
-                  
-              </div>
-              <div class="ui card">
-                    <h4 class="article-header-padding">
-                      <a class="header" href="https://indianexpress.com/article/india/maharashtra-from-march-to-may-639-farmers-take-their-lives-owing-to-crop-failure-and-debt-in-maharashtra-5259444/" target="blank"> 
-                       Maharashtra: In three months, 639 farmers committed suicide owing to crop failure and debt
-                      </a>
-                    </h4>
-                  <div class="content card-opacity-descrptn">
-                      <div class="description">
-                          <p>Of the 188, families of 174 farmers have received compensation," Revenue Minister Chandrakant Patil said, saying 122 cases were declared ineligible for compensation, while 329 cases are pending for further investigation.</p>
-                      </div>
-                  </div>
-              </div>
+              </div> 
           </div>
       </div>
   </div>
@@ -93,29 +56,19 @@
               </div>
               <div class="description margin-top-10">
                   <div class="ui relaxed divided list">
-                      <div class="item">
+                      <div class="item" *ngFor="let rssFeedOpportunity of rssFeedOpportunities | slice:0:5;">
                           <div class="content">
-                            <a class="header" href="http://www.indiawaterportal.org/opportunities/submit-concept-notes-breakthrough-solutions-efficient-water-use-agriculture" target="blank">
-                                Submit Concept Notes for Breakthrough Solutions for Efficient Water Use in Agriculture </a><br>
-                            <div class="description">Hindustan Unilever Foundation invites concept notes for scalable solutions that can transform India’s water footprint in agriculture from a highly inefficient state to one of ‘more crop per drop’.</div>
+                            <a class="header" href="{{rssFeedOpportunity.link}}" target="blank">
+                                {{rssFeedOpportunity.title}} </a><br>
+                            <div class="description"></div>
                           </div>
                       </div><br/>               
-                      <div class="item">
-                          <div class="content"><br/> 
-                            <a class="header" href="" target="blank">
-                                    Call for Admissions for Graduate Program of Water Science and Policy 2018 at Shiv Nadar University
-                             </a><br>
-                            <div class="description">
-                                    A first of its kind academic program offering a multi-disciplinary perspective on water with a special focus on policy and practical solutions.
-                            </div> 
-                          </div>
-                      </div>
                   </div>
               </div>
           </div>
       </div>
       <br>
-      <div class="ui segment">
+      <!-- <div class="ui segment">
           <div class="content">
               <div class="header segment-heading">
                   <span></span>
@@ -124,16 +77,16 @@
           </div>
           <div class="description margin-top-10">
                 <div class="ui relaxed divided list">
-                <div class="item">
+                <div class="item" *ngFor="let rssFeedOpportunity of rssFeedOpportunities | slice:5:7;">
                         <div class="content">
-                            <a class="header" href="http://www.indiawaterportal.org/opportunities/advertisement-post-director-ashoka-trust-research-ecology-and-environment-atree" target="blank">
-                                Advertisement for the post of Director, Ashoka Trust for Research in Ecology and the Environment (ATREE) </a><br>
-                            <div class="description">ATREE is seeking a thought leader who would steer the young dynamic organisation to emerge as a global leader in environmental sustainability.</div>
+                            <a class="header" href="{{rssFeedOpportunity.link}}" target="blank">
+                                {{rssFeedOpportunity.title}} </a><br>
+                            <div class="description"></div>
                         </div>
                     </div> 
                 </div>
           </div>
-      </div>
+      </div> -->
       <!--<button type="button" onclick="openModal()" class="ui basic fluid button margin-top--5">ORGANIZATIONS</button>-->
   </div>
   <div class="one wide column"></div>

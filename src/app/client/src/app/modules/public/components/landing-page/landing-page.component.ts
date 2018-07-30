@@ -13,12 +13,14 @@ export class LandingPageComponent implements OnInit {
   homepageContentP2: any;
   homepageContentP3: any;
   rssFeedNews:any;
+  rssFeedOpportunities:any;
 
   constructor(public rssfeedService: RssfeedService) { }
 
   ngOnInit() {
     this.getHomepageContent();
     this.getNewsRssFeed();
+    this.getOpportunitiesRssFeed();
   }
 
   getHomepageContent(){
@@ -38,6 +40,13 @@ export class LandingPageComponent implements OnInit {
       (data) => {
           console.log('rss feed', data.result)
           this.rssFeedNews = data.result
+       });
+  }
+
+  getOpportunitiesRssFeed(){
+    this.rssfeedService.getOpportunitiesRssFeed().subscribe(
+      (data) => {
+          this.rssFeedOpportunities = data.result
        });
   }
 

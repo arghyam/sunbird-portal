@@ -27,4 +27,11 @@ export class RssfeedService {
     };
     return this.portalService.get(option)
   }
+
+  getOpportunitiesRssFeed(){
+    const option: RequestParam = {
+      url: this.config.urlConFig.URLS.RSSFEED.JOBS
+    };
+    return this.portalService.get(option)
+  }
 }

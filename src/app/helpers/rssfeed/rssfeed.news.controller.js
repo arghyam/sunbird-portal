@@ -6,7 +6,10 @@ const uuidv1 = require('uuid')
 
 module.exports = function (app) {
   app.get('/rssfeed/news', bodyParser.json({ limit: '10mb' }), createAndValidateRequestBody,
-  getNewsRssFeed)
+  getNewsRssFeed);
+
+  app.get('/rssfeed/opportunities', bodyParser.json({ limit: '10mb' }), createAndValidateRequestBody,
+  getOpportunitesRssFeed);
 }
 
 
@@ -147,6 +150,47 @@ function getNewsRssFeed(req, res) {
 
 }
 
+function getOpportunitesRssFeed(req, res) {
+  var options = {
+    url: envHelper.JALDHARA_OPPORTUNITIES_RSS_FEED_URL,
+    method: 'GET',
+    json: true
+  };
+  const rspObj = req.rspObj
+
+  request(options, function (err, response, body) {
+    if (err && !body) {
+      console.log('Error while fetch rss feed', JSON.stringify(err))
+      rspObj.errCode = 'SERVER_ERROR'
+      rspObj.errMsg = 'fetching opportunites feed failed, Please try again later...'
+      rspObj.responseCode = 'SERVER_ERROR'
+      return res.status(500).send(errorResponse(rspObj))
+    } else {
+      try {
+        let resultData = []
+        let parseData = JSON.parse(parser.toJson(response.body))
+        let rssItems = parseData.rss.channel.item;
+        rssItems.forEach(element => {
+          const data = {
+            title: element.title,
+            link: element.link
+          }
+          data && resultData.push(data)
+        });
+        rspObj.result = resultData
+        return res.status(200).send(successResponse(rspObj))
+      }
+      catch(err) {
+        rspObj.errCode = 'INTERNAL_SERVER_ERROR'
+        rspObj.errMsg = 'fetching opportunites feed failed, Please try again later...'
+        rspObj.responseCode = 'SERVER_ERROR'
+        return res.status(500).send(errorResponse(rspObj))
+      }
+    }
+  });
+
+}
 //getNewsRssFeed()
 
-module.exports.getNewsRssFeed = getNewsRssFeed
+module.exports.getNewsRssFeed = getNewsRssFeed;
+module.exports.getOpportunitesRssFeed = getOpportunitesRssFeed

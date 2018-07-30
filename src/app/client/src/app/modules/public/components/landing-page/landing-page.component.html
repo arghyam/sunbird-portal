@@ -56,29 +56,19 @@
               </div>
               <div class="description margin-top-10">
                   <div class="ui relaxed divided list">
-                      <div class="item">
+                      <div class="item" *ngFor="let rssFeedOpportunity of rssFeedOpportunities | slice:0:5;">
                           <div class="content">
-                            <a class="header" href="http://www.indiawaterportal.org/opportunities/submit-concept-notes-breakthrough-solutions-efficient-water-use-agriculture" target="blank">
-                                Submit Concept Notes for Breakthrough Solutions for Efficient Water Use in Agriculture </a><br>
-                            <div class="description">Hindustan Unilever Foundation invites concept notes for scalable solutions that can transform India’s water footprint in agriculture from a highly inefficient state to one of ‘more crop per drop’.</div>
+                            <a class="header" href="{{rssFeedOpportunity.link}}" target="blank">
+                                {{rssFeedOpportunity.title}} </a><br>
+                            <div class="description"></div>
                           </div>
                       </div><br/>               
-                      <div class="item">
-                          <div class="content"><br/> 
-                            <a class="header" href="" target="blank">
-                                    Call for Admissions for Graduate Program of Water Science and Policy 2018 at Shiv Nadar University
-                             </a><br>
-                            <div class="description">
-                                    A first of its kind academic program offering a multi-disciplinary perspective on water with a special focus on policy and practical solutions.
-                            </div> 
-                          </div>
-                      </div>
                   </div>
               </div>
           </div>
       </div>
       <br>
-      <div class="ui segment">
+      <!-- <div class="ui segment">
           <div class="content">
               <div class="header segment-heading">
                   <span></span>
@@ -87,16 +77,16 @@
           </div>
           <div class="description margin-top-10">
                 <div class="ui relaxed divided list">
-                <div class="item">
+                <div class="item" *ngFor="let rssFeedOpportunity of rssFeedOpportunities | slice:5:7;">
                         <div class="content">
-                            <a class="header" href="http://www.indiawaterportal.org/opportunities/advertisement-post-director-ashoka-trust-research-ecology-and-environment-atree" target="blank">
-                                Advertisement for the post of Director, Ashoka Trust for Research in Ecology and the Environment (ATREE) </a><br>
-                            <div class="description">ATREE is seeking a thought leader who would steer the young dynamic organisation to emerge as a global leader in environmental sustainability.</div>
+                            <a class="header" href="{{rssFeedOpportunity.link}}" target="blank">
+                                {{rssFeedOpportunity.title}} </a><br>
+                            <div class="description"></div>
                         </div>
                     </div> 
                 </div>
           </div>
-      </div>
+      </div> -->
       <!--<button type="button" onclick="openModal()" class="ui basic fluid button margin-top--5">ORGANIZATIONS</button>-->
   </div>
   <div class="one wide column"></div>

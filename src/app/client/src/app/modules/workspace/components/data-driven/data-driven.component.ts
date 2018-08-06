@@ -236,7 +236,7 @@ export class DataDrivenComponent implements OnInit, OnDestroy {
     this.showLoader = true;
     const requestData = _.cloneDeep(data);
       requestData.name = data.name ? data.name : 'Untitled Collection',
-      requestData.description = '',
+      requestData.description = data.description ? data.description : '',
       // requestData.description = data.description ? data.description : 'Untitled Collection',
       requestData.creator = this.userProfile.firstName + ' ' + this.userProfile.lastName,
       requestData.createdBy = this.userProfile.id,

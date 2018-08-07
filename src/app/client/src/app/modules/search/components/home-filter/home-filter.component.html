@@ -49,13 +49,13 @@
                   <sui-select-option *ngFor="let subject of searchSubjects" [value]="subject"> </sui-select-option>
                 </sui-multi-select>
               </div>
-              <div class="two wide column" *ngIf='queryParams != undefined'>
+              <!-- <div class="two wide column" *ngIf='queryParams != undefined'>
                 <div class="field">
                   <form class="conceptSelector ui form">
                     <app-concept-picker [selectedConcepts]="queryParams.Concepts" (Concepts)="concepts($event)"></app-concept-picker>
                   </form>
                 </div>
-              </div>
+              </div> -->
               <div class="three wide column filter-button">
                 <a class="searchfilterbutton ui blue tiny  button" (click)="applyFilters()">{{resourceService.frmelmnts?.btn?.apply}}</a>
                 <a class="searchfilterbutton ui primary tiny basic button" (click)="resetFilters()">{{resourceService.frmelmnts?.btn?.reset}}</a>

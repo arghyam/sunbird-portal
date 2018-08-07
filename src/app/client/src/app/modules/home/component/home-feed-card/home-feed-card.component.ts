@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RssfeedService } from './../../services';
 /**
  * Shows news feed
  */
@@ -8,5 +9,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-feed-card.component.css']
 })
 export class HomeFeedCardComponent {
+  rssFeedQuestions:any;
+  constructor(public rssfeedService: RssfeedService) { }
+
+  ngOnInit() {
+    this.getQuestionsRssFeed();
+  }
+
+  getQuestionsRssFeed(){
+    this.rssfeedService.getQuestionsFeed().subscribe(
+      (data) => {
+          console.log('rss feed', data.result)
+          this.rssFeedQuestions = data.result
+       });
+  }
 
 }

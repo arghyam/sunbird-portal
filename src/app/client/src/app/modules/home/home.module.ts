@@ -15,6 +15,7 @@ import {
 } from './component/index';
 import { NgInviewModule } from 'angular-inport';
 import { TelemetryModule } from '@sunbird/telemetry';
+import { RssfeedService } from './services';
 @NgModule({
   imports: [
     SuiModule,
@@ -37,7 +38,7 @@ import { TelemetryModule } from '@sunbird/telemetry';
     HomeAnnouncementComponent,
     NotificationComponent,
   ],
-  providers: []
+  providers: [RssfeedService]
 })
 export class HomeModule {
 }

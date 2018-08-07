@@ -10,6 +10,12 @@ module.exports = function (app) {
 
   app.get('/rssfeed/opportunities', bodyParser.json({ limit: '10mb' }), createAndValidateRequestBody,
   getOpportunitesRssFeed);
+
+  app.get('/rssfeed/questions', bodyParser.json({ limit: '10mb' }), createAndValidateRequestBody,
+  getQuestionRssFeed);
+
+  app.get('/rssfeed/research/papers', bodyParser.json({ limit: '10mb' }), createAndValidateRequestBody,
+  getResearchPapersRssFeed);
 }
 
 
@@ -107,21 +113,29 @@ function getParams (msgId, status, errCode, msg) {
   return params
 }
 
-function getNewsRssFeed(req, res) {
-  var options = {
-    url: envHelper.JALDHARA_NEWS_RSS_FEED_URL,
-    method: 'GET',
-    json: true
-  };
-  const rspObj = req.rspObj
+function errmsgHandle(){
+  var rspObj = {}
+  rspObj.errCode = 'SERVER_ERROR'
+  rspObj.errMsg = 'fetching rss feed failed, Please try again later...'
+  rspObj.responseCode = 'SERVER_ERROR'
+  return rspObj; 
+}
 
+function getRssFeedOptions(rssFeedUrl){
+  return options = {
+      url: rssFeedUrl,
+      method: 'GET',
+      json: true
+    };
+}
+
+function httpCall(req, res, options){
+  const rspObj = req.rspObj
   request(options, function (err, response, body) {
     if (err && !body) {
       console.log('Error while fetch rss feed', JSON.stringify(err))
-      rspObj.errCode = 'SERVER_ERROR'
-      rspObj.errMsg = 'fetching news feed failed, Please try again later...'
-      rspObj.responseCode = 'SERVER_ERROR'
-      return res.status(500).send(errorResponse(rspObj))
+      const errObj = errmsgHandle();
+      return res.status(500).send(errorResponse(errObj))
     } else {
       try {
         let resultData = []
@@ -140,40 +154,35 @@ function getNewsRssFeed(req, res) {
         return res.status(200).send(successResponse(rspObj))
       }
       catch(err) {
-        rspObj.errCode = 'INTERNAL_SERVER_ERROR'
-        rspObj.errMsg = 'fetching news feed failed, Please try again later...'
-        rspObj.responseCode = 'SERVER_ERROR'
-        return res.status(500).send(errorResponse(rspObj))
+        const errObj = errmsgHandle();
+        return res.status(500).send(errorResponse(errObj))
       }
     }
   });
-
 }
 
-function getOpportunitesRssFeed(req, res) {
-  var options = {
-    url: envHelper.JALDHARA_OPPORTUNITIES_RSS_FEED_URL,
-    method: 'GET',
-    json: true
-  };
+function rssfeedHttpCall(req, res, options){
   const rspObj = req.rspObj
 
   request(options, function (err, response, body) {
     if (err && !body) {
       console.log('Error while fetch rss feed', JSON.stringify(err))
-      rspObj.errCode = 'SERVER_ERROR'
-      rspObj.errMsg = 'fetching opportunites feed failed, Please try again later...'
-      rspObj.responseCode = 'SERVER_ERROR'
-      return res.status(500).send(errorResponse(rspObj))
+      const errObj = errmsgHandle();
+      return res.status(500).send(errorResponse(errObj))
     } else {
       try {
         let resultData = []
         let parseData = JSON.parse(parser.toJson(response.body))
         let rssItems = parseData.rss.channel.item;
         rssItems.forEach(element => {
+          var description = '';
+          if(element.description !== undefined){
+            description = element.description
+          }
           const data = {
             title: element.title,
-            link: element.link
+            link: element.link,
+            description:description
           }
           data && resultData.push(data)
         });
@@ -181,16 +190,37 @@ function getOpportunitesRssFeed(req, res) {
         return res.status(200).send(successResponse(rspObj))
       }
       catch(err) {
-        rspObj.errCode = 'INTERNAL_SERVER_ERROR'
-        rspObj.errMsg = 'fetching opportunites feed failed, Please try again later...'
-        rspObj.responseCode = 'SERVER_ERROR'
-        return res.status(500).send(errorResponse(rspObj))
+        const errObj = errmsgHandle();
+        return res.status(500).send(errorResponse(errObj))
       }
     }
   });
-
 }
-//getNewsRssFeed()
+
+
+function getNewsRssFeed(req, res) {
+  var options = getRssFeedOptions(envHelper.JALDHARA_NEWS_RSS_FEED_URL)
+  httpCall(req, res, options);
+}
+
+function getOpportunitesRssFeed(req, res) {
+  var options = getRssFeedOptions(envHelper.JALDHARA_OPPORTUNITIES_RSS_FEED_URL)
+  rssfeedHttpCall(req, res, options)
+}
+
+function getQuestionRssFeed(req, res) {
+  var options = getRssFeedOptions(envHelper.JALDHARA_QUESTION_RSS_FEED_URL)
+  rssfeedHttpCall(req, res, options)
+}
+
+function getResearchPapersRssFeed(req, res) {
+  var options = getRssFeedOptions(envHelper.JALDHARA_RESEARCH_PAPERS_RSS_FEED_URL)
+   rssfeedHttpCall(req, res, options)
+ }
+
+//getResearchPapersRssFeed
 
 module.exports.getNewsRssFeed = getNewsRssFeed;
-module.exports.getOpportunitesRssFeed = getOpportunitesRssFeed
+module.exports.getOpportunitesRssFeed = getOpportunitesRssFeed;
+module.exports.getResearchPapersRssFeed = getResearchPapersRssFeed;
+module.exports.getQuestionRssFeed = getQuestionRssFeed;

@@ -2,19 +2,19 @@
 const env = process.env
 
 let envVariables = {
-  LEARNER_URL: env.sunbird_learner_player_url || 'https://staging.open-sunbird.org/api/',
-  CONTENT_URL: env.sunbird_content_player_url || 'https://staging.open-sunbird.org/api/',
-  CONTENT_PROXY_URL: env.sunbird_content_proxy_url || 'https://staging.open-sunbird.org',
+  LEARNER_URL: 'https://www.jaldhara.in/api/',
+  CONTENT_URL: 'https://www.jaldhara.in/api/',
+  CONTENT_PROXY_URL: 'https://www.jaldhara.in',
   PORTAL_REALM: env.sunbird_portal_realm || 'sunbird',
-  PORTAL_AUTH_SERVER_URL: env.sunbird_portal_auth_server_url || 'https://staging.open-sunbird.org/auth',
+  PORTAL_AUTH_SERVER_URL: 'https://www.jaldhara.in/auth',
   PORTAL_AUTH_SERVER_CLIENT: env.sunbird_portal_auth_server_client || 'portal',
   APPID: process.env.sunbird_environment + '.' + process.env.sunbird_instance + '.portal',
   DEFAUULT_TENANT: env.sunbird_default_tenant,
   EKSTEP_ENV: env.ekstep_env || 'qa',
   PORTAL_PORT: env.sunbird_port || 3000,
-  PORTAL_API_AUTH_TOKEN: env.sunbird_api_auth_token,
+  PORTAL_API_AUTH_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyMDUxMjFkZTI5NzQ0MzM4YTQzZDJlYTVjMjA4YzY5NCJ9.O1L7QUFK2PUbD-bJ-sj7mKsr23jdp4kWA0PBIaWXBIo',
   PORTAL_TELEMETRY_PACKET_SIZE: env.sunbird_telemetry_packet_size || 1000,
-  PORTAL_ECHO_API_URL: env.sunbird_echo_api_url || 'https://staging.open-sunbird.org/api/echo/',
+  PORTAL_ECHO_API_URL: env.sunbird_echo_api_url || 'https://www.jaldhara.in/api/echo/',
   PORTAL_AUTOCREATE_TRAMPOLINE_USER: env.sunbird_autocreate_trampoline_user || 'true',
   PORTAL_TRAMPOLINE_CLIENT_ID: env.sunbird_trampoline_client_id || 'trampoline',
   PORTAL_TRAMPOLINE_SECRET: env.sunbird_trampoline_secret,
@@ -27,7 +27,7 @@ let envVariables = {
   PORTAL_PRIMARY_BUNDLE_LANGUAGE: env.sunbird_portal_primary_bundle_language || 'en',
   CONTENT_SERVICE_UPSTREAM_URL: env.sunbird_content_service_upstream_url || 'http://localhost:5000/',
   LEARNER_SERVICE_UPSTREAM_URL: env.sunbird_learner_service_upstream_url || 'http://localhost:9000/',
-  DATASERVICE_URL: env.sunbird_dataservice_url || 'https://staging.open-sunbird.org/api/',
+  DATASERVICE_URL: 'https://www.jaldhara.in/' || 'https://staging.open-sunbird.org/api/',
   KEY_CLOAK_PUBLIC: env.sunbird_keycloak_public || 'true',
   KEY_CLOAK_REALM: env.sunbird_keycloak_realm || 'sunbird',
   CACHE_STORE: env.sunbird_cache_store || 'memory',
@@ -38,7 +38,9 @@ let envVariables = {
   ANDROID_APP_URL: env.sunbird_android_app_url || 'http://www.sunbird.org',
   EXPLORE_BUTTON_VISIBILITY: env.sunbird_explore_button_visibility || true,
   JALDHARA_NEWS_RSS_FEED_URL: env.jaldhara_news_rssfeed_url || 'http://www.indiawaterportal.org/articles/feed',
-  JALDHARA_OPPORTUNITIES_RSS_FEED_URL: env.jaldhara_opportunities_rssfeed_url || 'http://www.indiawaterportal.org/rss-opportunities-feed'
+  JALDHARA_OPPORTUNITIES_RSS_FEED_URL: env.jaldhara_opportunities_rssfeed_url || 'http://www.indiawaterportal.org/rss-opportunities-feed',
+  JALDHARA_QUESTION_RSS_FEED_URL: env.jaldhara_question_rssfeed_url || 'http://www.indiawaterportal.org/rss-questions-feed',
+  JALDHARA_RESEARCH_PAPERS_RSS_FEED_URL: env.jaldhara_research_papers_rssfeed_url || 'http://www.indiawaterportal.org/rss-research-papers-feeds'
 
 }
 

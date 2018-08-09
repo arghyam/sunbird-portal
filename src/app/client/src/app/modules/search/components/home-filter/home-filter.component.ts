@@ -27,9 +27,10 @@ export class HomeFilterComponent implements OnInit {
    * To navigate to other pages
    */
   private router: Router;
-  searchBoards: Array<string>;
+  searchTopics: Array<string>;
   searchLanguages: Array<string>;
   searchSubjects: Array<string>;
+  searchGradelevel: Array<string>;
   label: Array<string>;
   selectedConcepts: Array<object>;
   refresh = true;
@@ -111,9 +112,9 @@ export class HomeFilterComponent implements OnInit {
   * seting initial filter values.
   */
   setFilters() {
-    this.searchBoards = this.config.dropDownConfig.FILTER.RESOURCES.boards;
+    this.searchTopics = this.config.dropDownConfig.FILTER.RESOURCES.topics;
     this.searchLanguages = this.config.dropDownConfig.FILTER.RESOURCES.languages;
-    this.searchSubjects = this.config.dropDownConfig.FILTER.RESOURCES.subjects;
+    this.searchGradelevel = this.config.dropDownConfig.FILTER.RESOURCES.gradeLevels;
     if (this.queryParams && this.queryParams.Concepts) {
       this.queryParams.Concepts = this.conceptPickerService.processConcepts(this.queryParams.Concepts, this.selectedConcepts);
     }

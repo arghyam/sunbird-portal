@@ -155,16 +155,26 @@
                 }
             ],
             "languages": [
-                "Bengali",
                 "English",
-                "Gujarati",
                 "Hindi",
                 "Kannada",
+                "Assamese",
+                "Bengali",
+                "Bhojpuri",
+                "Bishnupriya Manipuri",
+                "Gujarati",
+                "Kashmiri",
+                "Konkani",
+                "Maithili",
+                "Malayalam",
                 "Marathi",
+                "Nepali",
+                "Odia",
                 "Punjabi",
-                "Tamil",
+                "Sanskrit",
+                "Sindhi",
                 "Telugu",
-                "Urdu"
+                "Tulu"
             ],
             "contentTypes": [
                 {
@@ -262,6 +272,20 @@
                     "field": "name",
                     "name": "Name A-Z"
                 }
+            ],
+            "topics": [
+                "Ground Water",
+                "Surface Water",
+                "Glaciers",
+                "River",
+                "Lake",
+                "Wastewater",
+                "Springs"   
+            ],
+            "gradeLevels": [
+                "Basic",
+                "Intermediate",
+                "Advanced"
             ]
         },
         "SEARCH": {
@@ -291,15 +315,15 @@
             ],
             "All": {
                 "DROPDOWN": {
-                    "Curriculum": [],
-                    "Subjects": [],
+                    "Topic": [],
                     "Medium": [],
+                    "Proficiency": [],
                     "Concepts": []
                 },
                 "label": [
-                    "Curriculum",
+                    "Topic",
                     "Medium",
-                    "Subjects",
+                    "Proficiency",
                     "Concepts"
                 ]
             },

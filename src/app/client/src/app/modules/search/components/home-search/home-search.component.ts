@@ -127,10 +127,10 @@ export class HomeSearchComponent implements OnInit {
     const searchParams = {
       filters: {
         contentType: ['Collection', 'TextBook', 'LessonPlan', 'Resource', 'Course'],
-        board: this.queryParams.Curriculum,
         language: this.queryParams.Medium,
-        subject: this.queryParams.Subjects,
-        concepts: this.queryParams.Concepts
+        concepts: this.queryParams.Concepts,
+        topic: this.queryParams.Topic,
+        gradeLevel: this.queryParams.Proficiency
       },
       limit: this.pageLimit,
       offset: (this.pageNumber - 1 ) * (this.pageLimit),

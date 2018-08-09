@@ -31,9 +31,9 @@
                 <span class="ShowFilterSubTitle">{{resourceService.frmelmnts?.lbl?.filterby}}</span>
               </div>
               <div class="two wide column ">
-                <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Curriculum" [options]="options" [hasLabels]=false
-                  placeholder="Curriculum" #multiSelect>
-                  <sui-select-option *ngFor="let board of searchBoards" [value]="board"> </sui-select-option>
+                <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Topic" [options]="options" [hasLabels]=false
+                  placeholder="Topic" #multiSelect>
+                  <sui-select-option *ngFor="let topic of searchTopics" [value]="topic"> </sui-select-option>
                 </sui-multi-select>
               </div>
               <div class="two wide column">
@@ -44,18 +44,18 @@
                 </sui-multi-select>
               </div>
               <div class="two wide column">
-                <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Subjects" [options]="options" [hasLabels]=false
-                  placeholder="Subjects" #multiSelect>
-                  <sui-select-option *ngFor="let subject of searchSubjects" [value]="subject"> </sui-select-option>
+                <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Proficiency" [options]="options" [hasLabels]=false
+                  placeholder="Proficiency" #multiSelect>
+                  <sui-select-option *ngFor="let gradelevel of searchGradelevel" [value]="gradelevel"> </sui-select-option>
                 </sui-multi-select>
               </div>
-              <!-- <div class="two wide column" *ngIf='queryParams != undefined'>
+              <div class="two wide column" *ngIf='queryParams != undefined'>
                 <div class="field">
                   <form class="conceptSelector ui form">
                     <app-concept-picker [selectedConcepts]="queryParams.Concepts" (Concepts)="concepts($event)"></app-concept-picker>
                   </form>
                 </div>
-              </div> -->
+              </div>
               <div class="three wide column filter-button">
                 <a class="searchfilterbutton ui blue tiny  button" (click)="applyFilters()">{{resourceService.frmelmnts?.btn?.apply}}</a>
                 <a class="searchfilterbutton ui primary tiny basic button" (click)="resetFilters()">{{resourceService.frmelmnts?.btn?.reset}}</a>

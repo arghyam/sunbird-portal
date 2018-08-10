@@ -89,6 +89,7 @@ export class OrganizationUploadComponent implements OnInit, OnDestroy {
       { instructions: this.resourceService.frmelmnts.instn.t0013 },
       { instructions: this.resourceService.frmelmnts.instn.t0002 },
       { instructions: this.resourceService.frmelmnts.instn.t0007 },
+      { instructions: this.resourceService.frmelmnts.instn.t0073 },
       { instructions: this.resourceService.frmelmnts.instn.t0021 },
       { instructions: this.resourceService.frmelmnts.instn.t0071 },
       { instructions: this.resourceService.frmelmnts.instn.t0027 },

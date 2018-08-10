@@ -392,6 +392,7 @@
       {
         "orgName": "orgName",
         "isRootOrg": "isRootOrg",
+        "channel": "channel",
         "description": "description"
       }
     ],
@@ -409,6 +410,7 @@
     "SAMPLE_ORGANIZATION_HEADERS_CSV":[
       "orgName",
       "isRootOrg",
+      "channel",
       "description"
     ]
   },

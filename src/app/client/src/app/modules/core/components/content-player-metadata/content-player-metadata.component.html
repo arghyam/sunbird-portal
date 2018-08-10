@@ -48,12 +48,12 @@
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.medium}}
+                        {{resourceService.frmelmnts.lbl.lang}}
                     </div>
                 </div>
                 <div class="nine wide column">
-                    <div class="content" *ngIf="metadata.medium">
-                        {{metadata.medium}}
+                    <div class="content" *ngIf="metadata.language">
+                        {{metadata.language}}
                     </div>
                 </div>
             </div>
@@ -62,22 +62,22 @@
             <div class="ui grid">
                 <div class="three wide tablet computer only column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.board}}
+                        {{resourceService.frmelmnts.lbl.topic}}
                     </div>
                 </div>
                 <div class="nine wide tablet computer only column">
-                    <div class="content" *ngIf="metadata.board">
-                        {{metadata.board}}
+                    <div class="content" *ngIf="metadata.topic">
+                        {{metadata.topic}}
                     </div>
                 </div>
                 <div class="six wide mobile only column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.board}}
+                        {{resourceService.frmelmnts.lbl.gradeLevel}}
                     </div>
                 </div>
                 <div class="six wide mobile only column">
-                    <div class="content" *ngIf="metadata.board">
-                        {{metadata.board}}
+                    <div class="content" *ngIf="metadata.gradeLevel">
+                        {{metadata.gradeLevel}}
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.class}}
+                        {{resourceService.frmelmnts.lbl.gradeLevel}}
                     </div>
                 </div>
                 <div class="nine wide column">
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <div class="item padding-top-10 padding-bottom-5">
+        <!-- <div class="item padding-top-10 padding-bottom-5">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.createdOn">
             <div class="ui grid">

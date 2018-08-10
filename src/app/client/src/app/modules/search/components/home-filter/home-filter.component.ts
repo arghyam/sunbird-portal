@@ -27,7 +27,7 @@ export class HomeFilterComponent implements OnInit {
    * To navigate to other pages
    */
   private router: Router;
-  searchTopics: Array<string>;
+  searchWaterResource: Array<string>;
   searchLanguages: Array<string>;
   searchSubjects: Array<string>;
   searchGradelevel: Array<string>;
@@ -62,7 +62,9 @@ export class HomeFilterComponent implements OnInit {
   /**
    * To check filterType.
    */
-  isObject(val) { return typeof val === 'object'; }
+  isObject(val) {
+    return typeof val === 'object';
+  }
   /**
    * remove selected values.
    */
@@ -112,7 +114,7 @@ export class HomeFilterComponent implements OnInit {
   * seting initial filter values.
   */
   setFilters() {
-    this.searchTopics = this.config.dropDownConfig.FILTER.RESOURCES.topics;
+    this.searchWaterResource = this.config.dropDownConfig.FILTER.RESOURCES.topics;
     this.searchLanguages = this.config.dropDownConfig.FILTER.RESOURCES.languages;
     this.searchGradelevel = this.config.dropDownConfig.FILTER.RESOURCES.gradeLevels;
     if (this.queryParams && this.queryParams.Concepts) {

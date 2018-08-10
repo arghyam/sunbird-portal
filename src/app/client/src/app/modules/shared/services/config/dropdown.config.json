@@ -315,16 +315,14 @@
             ],
             "All": {
                 "DROPDOWN": {
-                    "Topic": [],
+                    "WaterResource": [],
                     "Medium": [],
-                    "Proficiency": [],
-                    "Concepts": []
+                    "Board": []
                 },
                 "label": [
-                    "Topic",
+                    "WaterResource",
                     "Medium",
-                    "Proficiency",
-                    "Concepts"
+                    "Proficiency"
                 ]
             },
             "Users": {

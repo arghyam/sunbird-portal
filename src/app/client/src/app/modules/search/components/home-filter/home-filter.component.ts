@@ -129,9 +129,9 @@ export class HomeFilterComponent implements OnInit {
     this.queryParams = { ...this.config.dropDownConfig.FILTER.SEARCH.All.DROPDOWN, ...this.queryParams };
   }
   ngOnInit() {
-    this.conceptPickerService.conceptData$.subscribe(conceptData => {
-      if (conceptData && !conceptData.err) {
-        this.selectedConcepts = conceptData.data;
+    // this.conceptPickerService.conceptData$.subscribe(conceptData => {
+    //   if (conceptData && !conceptData.err) {
+    //     this.selectedConcepts = conceptData.data;
         this.activatedRoute.queryParams.subscribe((params) => {
           this.queryParams = { ...params };
           _.forIn(params, (value, key) => {
@@ -141,7 +141,7 @@ export class HomeFilterComponent implements OnInit {
           });
           this.setFilters();
         });
-      }
-    });
+      // }
+    // });
   }
 }

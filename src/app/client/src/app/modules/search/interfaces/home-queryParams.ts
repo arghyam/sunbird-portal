@@ -5,4 +5,5 @@ export interface IHomeQueryParams {
     Topic?: Array<string>;
     Proficiency?: Array<string>;
     WaterResource?: Array<string>;
+    Language?: Array<string>;
 }

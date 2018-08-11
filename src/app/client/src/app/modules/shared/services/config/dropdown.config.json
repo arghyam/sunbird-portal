@@ -316,12 +316,12 @@
             "All": {
                 "DROPDOWN": {
                     "WaterResource": [],
-                    "Medium": [],
+                    "Language": [],
                     "Board": []
                 },
                 "label": [
                     "WaterResource",
-                    "Medium",
+                    "Language",
                     "Proficiency"
                 ]
             },

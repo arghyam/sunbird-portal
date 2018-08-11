@@ -130,21 +130,22 @@
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.topic && metadata.topic.length > 0">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail overflow-word-wrap">
-                        {{resourceService.frmelmnts.lbl.concept}}
+                        <!-- {{resourceService.frmelmnts.lbl.concept}} -->
+                        Topics
                     </div>
                 </div>
                 <div class="nine wide column">
-                    <div class="content" *ngIf="metadata.concepts && metadata.concepts.length > 0">
-                        {{metadata.concepts}}
+                    <div class="content" *ngIf="metadata.topic && metadata.topic.length > 0">
+                        {{metadata.topic}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.keywords">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">

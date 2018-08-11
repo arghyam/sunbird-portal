@@ -101,6 +101,7 @@ export class AppComponent implements OnInit {
         });
       });
     }
+    this.initTenantService();
   }
   initializeLogedInsession() {
     this.userService.startSession();

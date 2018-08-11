@@ -52,13 +52,13 @@
                     </div>
                 </div>
                 <div class="nine wide column">
-                    <div class="content" *ngIf="metadata.language">
-                        {{metadata.language}}
+                    <div class="content" *ngIf="metadata.medium">
+                        {{metadata.medium}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5"  *ngIf="metadata.gradeLevel">
             <div class="ui grid">
                 <div class="three wide tablet computer only column">
                     <div class="content content-detail">
@@ -66,23 +66,13 @@
                     </div>
                 </div>
                 <div class="nine wide tablet computer only column">
-                    <div class="content" *ngIf="metadata.topic">
-                        {{metadata.topic}}
-                    </div>
-                </div>
-                <div class="six wide mobile only column">
-                    <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.gradeLevel}}
-                    </div>
-                </div>
-                <div class="six wide mobile only column">
                     <div class="content" *ngIf="metadata.gradeLevel">
                         {{metadata.gradeLevel}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.board">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">
@@ -90,8 +80,8 @@
                     </div>
                 </div>
                 <div class="nine wide column">
-                    <div class="content" *ngIf="metadata.gradeLevel">
-                        {{metadata.gradeLevel}}
+                    <div class="content" *ngIf="metadata.board">
+                        {{metadata.board}}
                     </div>
                 </div>
             </div>
@@ -140,21 +130,22 @@
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.topic && metadata.topic.length > 0">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail overflow-word-wrap">
-                        {{resourceService.frmelmnts.lbl.concept}}
+                        <!-- {{resourceService.frmelmnts.lbl.concept}} -->
+                        Topics
                     </div>
                 </div>
                 <div class="nine wide column">
-                    <div class="content" *ngIf="metadata.concepts && metadata.concepts.length > 0">
-                        {{metadata.concepts}}
+                    <div class="content" *ngIf="metadata.topic && metadata.topic.length > 0">
+                        {{metadata.topic}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="item padding-top-10 padding-bottom-5">
+        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.keywords">
             <div class="ui grid">
                 <div class="three wide column">
                     <div class="content content-detail">

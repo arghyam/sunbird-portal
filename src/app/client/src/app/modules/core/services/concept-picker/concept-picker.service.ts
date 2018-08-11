@@ -32,7 +32,7 @@ export class ConceptPickerService {
     this.resourceService = resourceService;
   }
   public initialize() {
-    this.getConcept(0, 300);
+    // this.getConcept(0, 300);
   }
   /**
   * call search api with objectType =['Concept']

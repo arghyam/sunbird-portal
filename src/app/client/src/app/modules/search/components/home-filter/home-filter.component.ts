@@ -31,6 +31,7 @@ export class HomeFilterComponent implements OnInit {
   searchLanguages: Array<string>;
   searchSubjects: Array<string>;
   searchGradelevel: Array<string>;
+  searchBoard: Array<string>;
   label: Array<string>;
   selectedConcepts: Array<object>;
   refresh = true;
@@ -117,6 +118,7 @@ export class HomeFilterComponent implements OnInit {
     this.searchWaterResource = this.config.dropDownConfig.FILTER.RESOURCES.topics;
     this.searchLanguages = this.config.dropDownConfig.FILTER.RESOURCES.languages;
     this.searchGradelevel = this.config.dropDownConfig.FILTER.RESOURCES.gradeLevels;
+    this.searchBoard = this.config.dropDownConfig.FILTER.RESOURCES.board
     if (this.queryParams && this.queryParams.Concepts) {
       this.queryParams.Concepts = this.conceptPickerService.processConcepts(this.queryParams.Concepts, this.selectedConcepts);
     }

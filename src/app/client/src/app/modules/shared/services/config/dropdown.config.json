@@ -273,7 +273,7 @@
                     "name": "Name A-Z"
                 }
             ],
-            "topics": [
+            "gradeLevels": [
                 "Ground Water",
                 "Surface Water",
                 "Glaciers",
@@ -282,7 +282,7 @@
                 "Wastewater",
                 "Springs"   
             ],
-            "gradeLevels": [
+            "board": [
                 "Basic",
                 "Intermediate",
                 "Advanced"

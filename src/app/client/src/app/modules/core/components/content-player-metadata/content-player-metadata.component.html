@@ -24,6 +24,7 @@
                     </div>
                 </div>
                 <div class="nine wide column">
+                        {{metadata}}
                     <div class="content overflow-word-wrap" *ngIf="metadata.name">
                         {{metadata.name}}
                     </div>
@@ -62,7 +63,7 @@
             <div class="ui grid">
                 <div class="three wide tablet computer only column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.topic}}
+                        {{resourceService.frmelmnts.lbl.gradeLevel}}
                     </div>
                 </div>
                 <div class="nine wide tablet computer only column">
@@ -70,16 +71,12 @@
                         {{metadata.gradeLevel}}
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="item padding-top-10 padding-bottom-5" *ngIf="metadata.board">
-            <div class="ui grid">
-                <div class="three wide column">
+                <div class="six wide mobile only column">
                     <div class="content content-detail">
-                        {{resourceService.frmelmnts.lbl.gradeLevel}}
+                        {{resourceService.frmelmnts.lbl.board}}
                     </div>
                 </div>
-                <div class="nine wide column">
+                <div class="six wide mobile only column">
                     <div class="content" *ngIf="metadata.board">
                         {{metadata.board}}
                     </div>

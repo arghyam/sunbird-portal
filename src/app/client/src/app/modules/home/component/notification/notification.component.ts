@@ -20,7 +20,7 @@ export class NotificationComponent {
   getResearchRssFeed(){
     this.rssfeedService.getReasearchPapersRssFeed().subscribe(
       (data) => {
-          console.log('notification rss feed', data.result)
+          //console.log('notification rss feed', data.result)
           this.rssFeedResearchPapers = data.result
        });
   }

@@ -2730,3 +2730,9 @@ iframe.iziModal-iframe {
 .ui.icon.input>i.icon.dialcode-search-icon:not(.link) {
   pointer-events: auto;
 }
+.node-readmore{
+  display: none;
+}
+.disqus_comments_num{
+  display: none;
+}

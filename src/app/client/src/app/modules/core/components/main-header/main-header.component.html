@@ -20,8 +20,8 @@
         </div>
         <div class="one wide column" *ngIf="userService.userid; else showLoginBtn">
             <i class="float-ContentLeft alarm-icon-header alarm icon large alaramIconColor"></i>
-            <a href="https://discuss.jaldhara.in" target="blank"><i class="float-ContentLeft alarm-icon-header icon-header-color comments icon large"></i></a>
-            <a href="https://issues.jaldhara.in" target="blank"><i class="float-ContentLeft alarm-icon-header icon-header-color bug icon large"></i></a>
+            <a href="https://discuss.jaldhara.in" target="blank" title="Discussion"><i class="float-ContentLeft alarm-icon-header icon-header-color comments icon large"></i></a>
+            <a href="https://issues.jaldhara.in" target="blank" title="Issues"><i class="float-ContentLeft alarm-icon-header icon-header-color bug icon large"></i></a>
             <div suiDropdown [(isOpen)]="isOpen" class="ui floating dropdown right top pointing
              header-user-container padding-top-circular-human-icon" id="dropdown-menu-list-header">
                 <img src="{{ userProfile?.avatar || 'assets/images/user_logo.png' | cdnprefixurl}}" class="ui circular image logged-in-user" />

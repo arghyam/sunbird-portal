@@ -32,20 +32,20 @@
               </div>
               <div class="two wide column ">
                 <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Proficiency" [options]="options" [hasLabels]=false
-                  placeholder="Proficiency" #multiSelect>
+                  defaultSelectionText="Proficiency" zeroSelectionText="Select" #multiSelect>
                   <sui-select-option *ngFor="let board of searchBoard" [value]="board"> </sui-select-option>
                 </sui-multi-select>
               </div>
               <div class="two wide column">
                 <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Language" [options]="options" [hasLabels]=false
-                  placeholder="Language" #multiSelect>
+                defaultSelectionText="Language" zeroSelectionText="Select" #multiSelect>
                   <sui-select-option *ngFor="let language of searchLanguages" [value]="language"> </sui-select-option>
                   <i class="dropdown icon"></i>
                 </sui-multi-select>
               </div>
               <div class="two wide column">
                 <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.WaterResource" [options]="options" [hasLabels]=false
-                  placeholder="WaterResource" #multiSelect>
+                defaultSelectionText="Water Resource" zeroSelectionText="Select" #multiSelect>
                   <sui-select-option *ngFor="let gradelevel of searchGradelevel" [value]="gradelevel"> </sui-select-option>
                 </sui-multi-select>
               </div>

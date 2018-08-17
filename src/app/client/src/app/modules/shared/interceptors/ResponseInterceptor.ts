@@ -15,7 +15,7 @@ export class ResponseInterceptor implements HttpInterceptor {
   public resourceService: ResourceService;
   count: number;
 
-    constructor(toasterService: ToasterService, resourceService: ResourceService) { 
+    constructor(toasterService: ToasterService, resourceService: ResourceService) {
        this.toasterService = toasterService;
        this.resourceService = resourceService;
        this.count = 0;
@@ -31,7 +31,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
   }, (err: any) => {
     if (err instanceof HttpErrorResponse) {
       if (err.status === 401 && this.count === 0) {
-        console.log('interceptor called')
+        console.log('interceptor called');
         this.toasterService.error(this.resourceService.messages.fmsg.m0082);
         //this.toasterService.error('Session faill...');
         this.count++;

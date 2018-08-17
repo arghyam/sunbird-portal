@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RssfeedService } from './../../services';
 /**
  * Shows notification
@@ -8,20 +8,19 @@ import { RssfeedService } from './../../services';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
-export class NotificationComponent {
+export class NotificationComponent implements OnInit {
 
-  rssFeedResearchPapers:any;
+  rssFeedResearchPapers: any;
   constructor(public rssfeedService: RssfeedService) { }
 
   ngOnInit() {
     this.getResearchRssFeed();
   }
- 
-  getResearchRssFeed(){
+
+  getResearchRssFeed() {
     this.rssfeedService.getReasearchPapersRssFeed().subscribe(
       (data) => {
-          //console.log('notification rss feed', data.result)
-          this.rssFeedResearchPapers = data.result
+          this.rssFeedResearchPapers = data.result;
        });
   }
 }

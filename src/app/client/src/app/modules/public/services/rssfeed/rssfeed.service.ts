@@ -17,7 +17,7 @@ export class RssfeedService {
   public config: ConfigService;
 
     constructor(config: ConfigService, public portalService: PortalService) {
-      this.config = config
+      this.config = config;
     }
 
 
@@ -25,13 +25,13 @@ export class RssfeedService {
     const option: RequestParam = {
       url: this.config.urlConFig.URLS.RSSFEED.NEWS
     };
-    return this.portalService.get(option)
+    return this.portalService.get(option);
   }
 
-  getOpportunitiesRssFeed(){
+  getOpportunitiesRssFeed() {
     const option: RequestParam = {
       url: this.config.urlConFig.URLS.RSSFEED.JOBS
     };
-    return this.portalService.get(option)
+    return this.portalService.get(option);
   }
 }

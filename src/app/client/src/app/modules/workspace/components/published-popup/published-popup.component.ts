@@ -126,7 +126,7 @@ export class PublishedPopupComponent implements OnInit {
    * This method checked reason into a array
    */
   checkedArray(checkedItem) {
-    console.log('checked item', checkedItem)
+    console.log('checked item', checkedItem);
     if (checkedItem && (_.indexOf(this.reasons, checkedItem) === -1)) {
       return false;
     } else if (checkedItem && (_.indexOf(this.reasons, checkedItem) !== -1)) {

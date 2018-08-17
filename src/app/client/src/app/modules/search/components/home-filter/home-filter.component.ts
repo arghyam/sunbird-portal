@@ -118,7 +118,7 @@ export class HomeFilterComponent implements OnInit {
     this.searchWaterResource = this.config.dropDownConfig.FILTER.RESOURCES.topics;
     this.searchLanguages = this.config.dropDownConfig.FILTER.RESOURCES.languages;
     this.searchGradelevel = this.config.dropDownConfig.FILTER.RESOURCES.gradeLevels;
-    this.searchBoard = this.config.dropDownConfig.FILTER.RESOURCES.board
+    this.searchBoard = this.config.dropDownConfig.FILTER.RESOURCES.board;
     if (this.queryParams && this.queryParams.Concepts) {
       this.queryParams.Concepts = this.conceptPickerService.processConcepts(this.queryParams.Concepts, this.selectedConcepts);
     }

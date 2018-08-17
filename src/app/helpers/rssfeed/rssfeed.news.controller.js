@@ -141,19 +141,26 @@ function httpCall(req, res, options){
         let resultData = []
         let parseData = JSON.parse(parser.toJson(response.body))
         let rssItems = parseData.rss.channel.item;
+        console.log('length', rssItems.length )
         rssItems.forEach(element => {
-          const description = JSON.parse(parser.toJson(element.description))
-          const data = {
-            title: element.title,
-            link: element.link,
-            description: description && description.meta && description.meta.content
+          try {
+            const description = JSON.parse(parser.toJson(element.description))
+            const data = {
+              title: element.title,
+              link: element.link,
+              description: description && description.meta && description.meta.content
+            }
+            data && data.description && resultData.push(data)
+          } catch(err) {
+            console.log(err);
           }
-          data && data.description && resultData.push(data)
         });
         rspObj.result = resultData
+        console.log('rspObj.result', rspObj.result.length)
         return res.status(200).send(successResponse(rspObj))
       }
       catch(err) {
+        console.log('Error', err)
         const errObj = errmsgHandle();
         return res.status(500).send(errorResponse(errObj))
       }

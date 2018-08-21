@@ -31,6 +31,9 @@
           </div>
           <div class="content ">
             <a class="header ">{{org.orgName}}</a>
+            <span class="right floated" *ngIf="checkOrgIdAccess(org.id)">
+              {{org.id}}
+            </span>
             <div class="description ">
               <p>{{org.description}}</p>
             </div>

@@ -23,7 +23,6 @@ export class ContentPlayerMetadataComponent implements OnInit {
     this.metadata = {...this.contentData};
     this.validateContent();
     this.getConceptsNames();
-    console.log('thissss', this.metadata)
   }
 
   validateContent() {

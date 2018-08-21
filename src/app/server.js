@@ -138,6 +138,7 @@ function getLocals(req) {
   locals.defaultTenant = envHelper.DEFAUULT_TENANT
   locals.contentChannelFilter = envHelper.CONTENT_CHANNEL_FILTER_TYPE;
   locals.exploreButtonVisibility = envHelper.EXPLORE_BUTTON_VISIBILITY;
+  locals.editorChannelFilter = envHelper.EDITOR_CHANNEL_FILTER_TYPE;
   return locals;
 }
 

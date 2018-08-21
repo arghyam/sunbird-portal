@@ -107,7 +107,7 @@ function getParams (msgId, status, errCode, msg) {
 
 function getQuestionRssFeed(req, res) {
   var options = {
-    url: envHelper.JALDHARA_QUESTION_RSS_FEED_URL,
+    url: envHelper.JALDHARA_NEWS_RSS_FEED_URL,
     method: 'GET',
     json: true
   };
@@ -115,34 +115,19 @@ function getQuestionRssFeed(req, res) {
   //const rspObj = req.rspObj
 
   request(options, function (err, response, body) {
-    if (err && !body) {
-      console.log('Error while fetch rss feed', JSON.stringify(err))
-      const errObj = errmsgHandle();
-      return res.status(500).send(errorResponse(errObj))
-    } else {
-      try {
-        let resultData = []
-        let parseData = JSON.parse(parser.toJson(response.body))
+    console.log('all data', response.body)
+    let parseData = JSON.parse(parser.toJson(response.body))
         let rssItems = parseData.rss.channel.item;
         rssItems.forEach(element => {
-          const description = JSON.parse(parser.toJson(element.description))
-          console.log('description', description)
+          console.log('rss feed', JSON.parse(element.description))
+          //const description = JSON.parse(parser.toJson(element.description))
           const data = {
             title: element.title,
             link: element.link,
-            description:element.description
+            description: element.description//description && description.meta && description.meta.content
           }
-          data && resultData.push(data)
+          data && data.description && resultData.push(data)
         });
-        //rspObj.result = resultData
-        //return res.status(200).send(successResponse(rspObj))
-      }
-      catch(err) {
-        console.log(err)
-        //const errObj = errmsgHandle();
-        //return res.status(500).send(errorResponse(errObj))
-      }
-    }
   });
 
 

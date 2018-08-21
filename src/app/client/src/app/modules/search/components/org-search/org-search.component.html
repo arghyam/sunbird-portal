@@ -47,6 +47,8 @@
               <div class="ui label " *ngIf="org.status===3">{{resourceService.frmelmnts?.lbl?.retired}}</div>
             </div>
           </div>
+          <div class="right-float" *ngIf="rootOrgAdminPermission"><b>{{org.id}}</b></div>
+          <div class="right-float" *ngIf="orgAdminPermission"><b>{{org.id}}</b></div>
         </div>
       </div>
       <div>

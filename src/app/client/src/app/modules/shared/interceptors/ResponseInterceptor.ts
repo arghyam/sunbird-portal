@@ -33,7 +33,6 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
       if (err.status === 401 && this.count === 0) {
         console.log('interceptor called');
         this.toasterService.error(this.resourceService.messages.fmsg.m0082);
-        //this.toasterService.error('Session faill...');
         this.count++;
       }
     }

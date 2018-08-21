@@ -8,7 +8,7 @@
             <div class="ui relaxed divided list">
                 <div class="item" *ngFor="let rssFeedResearchPaper of rssFeedResearchPapers  | slice:0:4;">
                     <div class="content">
-                        <a class="header text-decoration-underline cardsSubHeading" href="rssFeedResearchPaper.link" target="blank">{{rssFeedResearchPaper.title}} </a>
+                        <a class="header text-decoration-underline cardsSubHeading" href="{{rssFeedResearchPaper.link}}" target="blank">{{rssFeedResearchPaper.title}} </a>
                         <br>
                         <div [innerHtml]="rssFeedResearchPaper.description"></div>
                     </div>

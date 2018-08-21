@@ -213,30 +213,28 @@
                 "Activity"
             ],
             "subjects": [
-                "Assamese",
-                "Bengali",
-                "English",
-                "Gujarati",
-                "Hindi",
-                "Kannada",
-                "Malayalam",
-                "Marathi",
-                "Nepali",
-                "Oriya",
-                "Punjabi",
-                "Tamil",
-                "Telugu",
-                "Urdu",
-                "Biology",
+                "Geology",
+                "Hydrogeology", 
+                "Geo-chemistry", 
+                "Geophysics",
+                "Rural Communication",
+                "Rural Development", 
+                "Rural Management",
+                "Agriculture/ Irrigation",
                 "Chemistry",
-                "Physics",
-                "Mathematics",
-                "Environmental Studies",
-                "Geography",
-                "History",
-                "Political Science",
-                "Economics",
-                "Sanskrit"
+                "Water Quality",
+                "Civil Engineering",
+                "Sociology/ Social Work", 
+                "Environment Sciences",
+                "Environment Management",
+                "Environment Engineering",
+                "Natural Resources Management", 
+                "Gender",
+                "Remote Sensing/ GIS",
+                "Finance",
+                "Medicine",
+                "Nutritionist",
+                "Information Technology"
             ],
             "boards": [
                 "AP Board",
@@ -273,7 +271,7 @@
                     "name": "Name A-Z"
                 }
             ],
-            "topics": [
+            "gradeLevels": [
                 "Ground Water",
                 "Surface Water",
                 "Glaciers",
@@ -282,7 +280,7 @@
                 "Wastewater",
                 "Springs"   
             ],
-            "gradeLevels": [
+            "board": [
                 "Basic",
                 "Intermediate",
                 "Advanced"
@@ -328,13 +326,13 @@
             "Users": {
                 "DROPDOWN": {
                     "Grades": [],
-                    "Medium": [],
+                    "Language": [],
                     "Subjects": [],
                     "Roles": []
                 },
                 "label": [
                     "Grades",
-                    "Medium",
+                    "Language",
                     "Subjects",
                     "Roles"
                 ]

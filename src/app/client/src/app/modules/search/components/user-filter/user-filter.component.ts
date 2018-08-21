@@ -23,7 +23,7 @@ export class UserFilterComponent implements OnInit {
    */
   private router: Router;
   searchGrades: Array<string>;
-  searchMediums: Array<string>;
+  searchLanguages: Array<string>;
   searchSubjects: Array<string>;
   searchRoles: Array<string>;
   label: any;
@@ -89,7 +89,7 @@ export class UserFilterComponent implements OnInit {
 
     this.queryParams = { ...this.config.dropDownConfig.FILTER.SEARCH.Users.DROPDOWN, ...this.queryParams };
     this.searchGrades = this.config.dropDownConfig.COMMON.grades;
-    this.searchMediums = this.config.dropDownConfig.COMMON.medium;
+    this.searchLanguages = this.config.dropDownConfig.FILTER.RESOURCES.languages;
     this.searchSubjects = this.config.dropDownConfig.FILTER.RESOURCES.subjects;
     this.searchRoles = this.config.dropDownConfig.FILTER.RESOURCES.roles;
     this.label = this.config.dropDownConfig.FILTER.SEARCH.Users.label;

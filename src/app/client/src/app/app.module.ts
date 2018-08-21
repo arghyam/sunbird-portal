@@ -68,7 +68,7 @@ import { ResponseInterceptor } from './modules/shared/interceptors/ResponseInter
   providers: [
     CacheService,
     {provide: CacheStorageAbstract, useClass: CacheMemoryStorage},
-    {provide:HTTP_INTERCEPTORS,useClass:ResponseInterceptor,multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
   ]
 })
 export class AppModule {

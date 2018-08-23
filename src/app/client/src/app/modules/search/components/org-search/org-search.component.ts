@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage } from '@sunbird/shared';
-=======
 import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage, IUserData, IUserProfile } from '@sunbird/shared';
->>>>>>> Stashed changes
 import { SearchService, UserService } from '@sunbird/core';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -151,7 +147,7 @@ export class OrgSearchComponent implements OnInit {
     this.searchService.orgSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {
         if (apiResponse.result.response.count && apiResponse.result.response.content.length > 0) {
-          console.log('orgIdddd', apiResponse.result.response.content)
+          //console.log('orgIdddd', apiResponse.result.response.content)
           this.showLoader = false;
           this.noResult = false;
           this.searchList = apiResponse.result.response.content;
@@ -251,7 +247,7 @@ export class OrgSearchComponent implements OnInit {
         subtype: this.activatedRoute.snapshot.data.telemetry.subtype
       }
     };
-    console.log('userdata', this.userService.userProfile)
+    //console.log('userdata', this.userService.userProfile)
 
     const roles = this.userService.userProfile.userRoles
         const OrgsIds = this.userService.userProfile.organisations

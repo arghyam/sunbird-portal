@@ -239,6 +239,20 @@ export class UserService {
     return this._contentChannelFilter;
   }
 
+  get editorChannelFilter() {
+    try {
+      const contentChannelFilter = (<HTMLInputElement>document.getElementById('editorChannelFilter')).value;
+      if (contentChannelFilter && contentChannelFilter.toLowerCase() === 'self') {
+        return this._contentChannelFilter = this.channel;
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      console.log('unable to set editor channel filter');
+      return undefined;
+    }
+  }
+
   /**
    * Get organization details.
    *

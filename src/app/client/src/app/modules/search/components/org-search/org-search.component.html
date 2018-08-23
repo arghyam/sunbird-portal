@@ -30,9 +30,9 @@
             <img [src]="org.avatar || 'assets/images/userOrganization.png' | cdnprefixurl">
           </div>
           <div class="content ">
-            <a class="header ">{{org.orgName}}</a>
-            <span class="right floated" *ngIf="checkOrgIdAccess(org.id)">
-              {{org.id}}
+            <span class="header ">{{org.orgName}}</span>
+            <span class="right floated ui tiny header" *ngIf="checkOrgIdAccess(org.id)">
+              <b>{{org.id}}</b>
             </span>
             <div class="description ">
               <p>{{org.description}}</p>

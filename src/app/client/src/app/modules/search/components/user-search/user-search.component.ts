@@ -101,6 +101,8 @@ export class UserSearchComponent implements OnInit {
   rootOrgId: string;
   userProfile: any;
   inviewLogs: any = [];
+  order: string = 'firstName';
+  reverse: boolean = false;
   /**
      * Constructor to create injected service(s) object
      * Default method of Draft Component class

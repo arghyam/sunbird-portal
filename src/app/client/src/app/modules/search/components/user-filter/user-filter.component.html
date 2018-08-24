@@ -32,6 +32,8 @@
                   </sui-multi-select>
 
                 </div> -->
+                <div class="two wide column"><app-org-dropdown queryParams="queryParams" (selectedOrg)="selectedOrg($event)"></app-org-dropdown></div>
+                
                 <div class="two wide column">
                   <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Language" [options]="options" [hasLabels]=false
                   defaultSelectionText="Language" zeroSelectionText="Select" #multiSelect>

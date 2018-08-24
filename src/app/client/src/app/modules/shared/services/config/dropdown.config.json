@@ -328,13 +328,15 @@
                     "Grades": [],
                     "Language": [],
                     "Subjects": [],
-                    "Roles": []
+                    "Roles": [],
+                    "Organization": []
                 },
                 "label": [
                     "Grades",
                     "Language",
                     "Subjects",
-                    "Roles"
+                    "Roles",
+                    "Organization"
                 ]
             },
             "Organisations": {

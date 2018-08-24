@@ -29,6 +29,7 @@ export class UserFilterComponent implements OnInit {
   label: any;
   refresh = true;
   isAccordianOpen = false;
+
   /**
     * Constructor to create injected service(s) object
     Default method of Draft Component class
@@ -100,5 +101,10 @@ export class UserFilterComponent implements OnInit {
       this.queryParams = { ...params };
       this.setFilters();
     });
+  }
+
+  selectedOrg(data) {
+    this.queryParams.OrganizationName = data.orgName;
+    this.queryParams.Organization = data.id
   }
 }

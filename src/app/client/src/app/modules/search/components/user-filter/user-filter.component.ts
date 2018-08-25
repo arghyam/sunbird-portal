@@ -29,6 +29,7 @@ export class UserFilterComponent implements OnInit {
   label: any;
   refresh = true;
   isAccordianOpen = false;
+  selectedOrgMap: { id, orgName };
 
   /**
     * Constructor to create injected service(s) object
@@ -103,8 +104,17 @@ export class UserFilterComponent implements OnInit {
     });
   }
 
+  getItemLabel(item, value) {
+    if (value !== 'Organization') {
+      return item;
+    } else {
+      const org = _.find(this.selectedOrgMap, {id: item });
+      return (org ? org.orgName : null);
+    }
+  }
+
   selectedOrg(data) {
-    this.queryParams.OrganizationName = data.orgName;
-    this.queryParams.Organization = data.id
+    this.selectedOrgMap = data;
+    this.queryParams.Organization = _.map(data, 'id');
   }
 }

@@ -101,8 +101,8 @@ export class UserSearchComponent implements OnInit {
   rootOrgId: string;
   userProfile: any;
   inviewLogs: any = [];
-  order: string = 'firstName';
-  reverse: boolean = false;
+  order = 'firstName';
+  reverse = false;
   /**
      * Constructor to create injected service(s) object
      * Default method of Draft Component class
@@ -140,7 +140,8 @@ export class UserSearchComponent implements OnInit {
         'language': this.queryParams.Language,
         'subject': this.queryParams.Subjects,
         'location': this.queryParams.Location,
-        'organisations.roles': this.queryParams.Roles
+        'organisations.roles': this.queryParams.Roles,
+        'organisations.organisationId': this.queryParams.Organization
       },
       limit: this.pageLimit,
       pageNumber: this.pageNumber,

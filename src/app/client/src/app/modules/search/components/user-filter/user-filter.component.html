@@ -15,7 +15,7 @@
                         <span class="padded chip padding-right-5" *ngIf='queryParams[value] && queryParams[value].length > 0'>
                           {{value}}:
                           <a class="ui label margin-top--5" *ngFor="let item of queryParams[value] ">
-                            {{item}}
+                            {{getItemLabel(item, value)}}
                             <i class="delete icon" (click)="removeFilterSelection(value,item)"></i>
                           </a>
                         </span>
@@ -32,7 +32,7 @@
                   </sui-multi-select>
 
                 </div> -->
-                <div class="two wide column"><app-org-dropdown queryParams="queryParams" (selectedOrg)="selectedOrg($event)"></app-org-dropdown></div>
+                <div class="two wide column"><app-org-dropdown [queryParams]="queryParams" (selectedOrg)="selectedOrg($event)"></app-org-dropdown></div>
                 
                 <div class="two wide column">
                   <sui-multi-select class="selection ui filtersearch" [(ngModel)]="queryParams.Language" [options]="options" [hasLabels]=false

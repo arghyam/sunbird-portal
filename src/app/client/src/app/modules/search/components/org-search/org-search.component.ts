@@ -1,4 +1,4 @@
-import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage, IUserData, IUserProfile } from '@sunbird/shared';
+import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage } from '@sunbird/shared';
 import { SearchService, UserService } from '@sunbird/core';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,11 +14,6 @@ import { IInteractEventObject, IInteractEventEdata, IImpressionEventInput } from
   styleUrls: ['./org-search.component.css']
 })
 export class OrgSearchComponent implements OnInit {
-
-  /**
-   * Reference of User Profile interface
-   */
-  userProfile: IUserProfile;
 
   /**
    * Reference of toaster service
@@ -102,10 +97,7 @@ export class OrgSearchComponent implements OnInit {
 	 * telemetryImpression
 	*/
   telemetryImpression: IImpressionEventInput;
-  /**
-   * all user role
-   */
-  private userRoles: Array<string> = [];
+  
   public rootOrgId: string;
   /**
    * Constructor to create injected service(s) object

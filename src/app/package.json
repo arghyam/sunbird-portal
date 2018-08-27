@@ -1,7 +1,7 @@
 {
   "name": "player",
   "author": "arghyam",
-  "version": "1.7.22",
+  "version": "1.7.24",
   "buildNumber": "3",
   "private": true,
   "devDependencies": {

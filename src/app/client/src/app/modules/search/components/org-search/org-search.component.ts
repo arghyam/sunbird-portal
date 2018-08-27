@@ -97,7 +97,7 @@ export class OrgSearchComponent implements OnInit {
 	 * telemetryImpression
 	*/
   telemetryImpression: IImpressionEventInput;
-  
+
   public rootOrgId: string;
   /**
    * Constructor to create injected service(s) object
@@ -137,7 +137,7 @@ export class OrgSearchComponent implements OnInit {
     this.searchService.orgSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {
         if (apiResponse.result.response.count && apiResponse.result.response.content.length > 0) {
-          //console.log('orgIdddd', apiResponse.result.response.content)
+          // console.log('orgIdddd', apiResponse.result.response.content)
           this.showLoader = false;
           this.noResult = false;
           this.searchList = apiResponse.result.response.content;

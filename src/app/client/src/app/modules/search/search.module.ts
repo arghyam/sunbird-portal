@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserSearchService } from './services';
 import { OrderModule } from 'ngx-order-pipe';
 import { CourseSearchComponent, UserFilterComponent, UserEditComponent, UserDeleteComponent, HomeSearchComponent, HomeFilterComponent,
-   OrgSearchComponent, OrgFilterComponent, UserProfileComponent, UserSearchComponent, 
+   OrgSearchComponent, OrgFilterComponent, UserProfileComponent, UserSearchComponent,
    LibrarySearchComponent, OrgDropdownComponent } from './components';
 import { TelemetryModule } from '@sunbird/telemetry';
 import { NgInviewModule } from 'angular-inport';

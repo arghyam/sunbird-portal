@@ -145,7 +145,8 @@ export class UserSearchComponent implements OnInit {
       },
       limit: this.pageLimit,
       pageNumber: this.pageNumber,
-      query: this.queryParams.key
+      query: this.queryParams.key,
+      sort_by:  {firstName: 'asc' }
     };
     this.searchService.userSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {

@@ -132,7 +132,8 @@ export class OrgSearchComponent implements OnInit {
       },
       limit: this.pageLimit,
       pageNumber: this.pageNumber,
-      query: this.queryParams.key
+      query: this.queryParams.key,
+      sort_by: {orgName: 'asc'}
     };
     this.searchService.orgSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {

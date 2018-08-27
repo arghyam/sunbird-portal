@@ -1,4 +1,4 @@
-import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage, IUserData, IUserProfile } from '@sunbird/shared';
+import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage } from '@sunbird/shared';
 import { SearchService, UserService } from '@sunbird/core';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,11 +14,6 @@ import { IInteractEventObject, IInteractEventEdata, IImpressionEventInput } from
   styleUrls: ['./org-search.component.css']
 })
 export class OrgSearchComponent implements OnInit {
-
-  /**
-   * Reference of User Profile interface
-   */
-  userProfile: IUserProfile;
 
   /**
    * Reference of toaster service
@@ -102,13 +97,8 @@ export class OrgSearchComponent implements OnInit {
 	 * telemetryImpression
 	*/
   telemetryImpression: IImpressionEventInput;
-  /**
-   * all user role
-   */
-  private userRoles: Array<string> = [];
+
   public rootOrgId: string;
-  public orgAdminPermission = false;
-  public rootOrgAdminPermission = false;
   /**
    * Constructor to create injected service(s) object
    * Default method of Draft Component class
@@ -142,12 +132,13 @@ export class OrgSearchComponent implements OnInit {
       },
       limit: this.pageLimit,
       pageNumber: this.pageNumber,
-      query: this.queryParams.key
+      query: this.queryParams.key,
+      sort_by: {orgName: 'asc'}
     };
     this.searchService.orgSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {
         if (apiResponse.result.response.count && apiResponse.result.response.content.length > 0) {
-          //console.log('orgIdddd', apiResponse.result.response.content)
+          // console.log('orgIdddd', apiResponse.result.response.content)
           this.showLoader = false;
           this.noResult = false;
           this.searchList = apiResponse.result.response.content;
@@ -247,30 +238,6 @@ export class OrgSearchComponent implements OnInit {
         subtype: this.activatedRoute.snapshot.data.telemetry.subtype
       }
     };
-    //console.log('userdata', this.userService.userProfile)
-
-    const roles = this.userService.userProfile.userRoles
-        const OrgsIds = this.userService.userProfile.organisations
-        const rootOrgId = this.userService.userProfile.rootOrgId
-        var n = _.find(OrgsIds,function(el){
-          if(rootOrgId == el.organisationId){
-            return el.organisationId;
-          }else{
-            return el.organisationId
-          } 
-      });
-        var orgAdminRole = _.findIndex(roles,function(el){
-          return el == 'ORG_ADMIN'
-      });
-      var systemAdminRole = _.findIndex(roles,function(sytadm){
-        return sytadm == 'SYSTEM_ADMINISTRATION'
-    });
-
-      if(n!=undefined && orgAdminRole == 1 || systemAdminRole == 1){
-        this.rootOrgAdminPermission = true
-      }else if(orgAdminRole == 1){
-        this.orgAdminPermission = true
-      }
   }
 
   setInteractEventData() {

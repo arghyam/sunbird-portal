@@ -107,8 +107,6 @@ export class OrgSearchComponent implements OnInit {
    */
   private userRoles: Array<string> = [];
   public rootOrgId: string;
-  public orgAdminPermission = false;
-  public rootOrgAdminPermission = false;
   /**
    * Constructor to create injected service(s) object
    * Default method of Draft Component class
@@ -247,30 +245,6 @@ export class OrgSearchComponent implements OnInit {
         subtype: this.activatedRoute.snapshot.data.telemetry.subtype
       }
     };
-    //console.log('userdata', this.userService.userProfile)
-
-    const roles = this.userService.userProfile.userRoles
-        const OrgsIds = this.userService.userProfile.organisations
-        const rootOrgId = this.userService.userProfile.rootOrgId
-        var n = _.find(OrgsIds,function(el){
-          if(rootOrgId == el.organisationId){
-            return el.organisationId;
-          }else{
-            return el.organisationId
-          } 
-      });
-        var orgAdminRole = _.findIndex(roles,function(el){
-          return el == 'ORG_ADMIN'
-      });
-      var systemAdminRole = _.findIndex(roles,function(sytadm){
-        return sytadm == 'SYSTEM_ADMINISTRATION'
-    });
-
-      if(n!=undefined && orgAdminRole == 1 || systemAdminRole == 1){
-        this.rootOrgAdminPermission = true
-      }else if(orgAdminRole == 1){
-        this.orgAdminPermission = true
-      }
   }
 
   setInteractEventData() {

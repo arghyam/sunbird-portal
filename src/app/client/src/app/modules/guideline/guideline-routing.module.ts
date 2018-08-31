@@ -2,8 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DataPrivacyPolicyComponent } from './component/index';
-import { TermsOfUserComponent } from './component/index';
+import { DataPrivacyPolicyComponent, TermsOfUserComponent} from './component/index';
 // Import component
 
 const telemetryEnv = 'guideline';
@@ -12,16 +11,16 @@ const routes: Routes = [
   {
      path: 'guideline/data-privacy-policy', data: {
       telemetry: {
-        env: telemetryEnv, pageid: 'guideline', uri: '/guideline', subtype: 'guideline',
+        env: telemetryEnv, pageid: 'guideline', uri: '/data-privacy-policy', subtype: 'guideline',
         type: 'view', object: { type: objectType, ver: '1.0' }
       }
     },
     component: DataPrivacyPolicyComponent
   },
   {
-    path: 'guideline/terms-of-user', data: {
+    path: 'guideline/terms-of-use', data: {
       telemetry: {
-        env: telemetryEnv, pageid: 'guideline', uri: '/guideline', subtype: 'guideline',
+        env: telemetryEnv, pageid: 'guideline', uri: '/terms-of-use', subtype: 'guideline',
         type: 'view', object: { type: objectType, ver: '1.0' }
       }
     },

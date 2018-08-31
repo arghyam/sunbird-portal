@@ -13,14 +13,6 @@ export class MainFooterComponent implements OnInit {
    */
   public resourceService: ResourceService;
   /**
-  * content is used to render IContents value on the view
-  */
-  @Input() instanceName: string;
-  /**
-  * to show the footer bar
-  */
-  appFooter = true;
-  /**
    * reference of Router.
    */
   private router: Router;

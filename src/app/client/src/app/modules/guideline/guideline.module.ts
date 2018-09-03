@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GuidelineRoutingModule } from './guideline-routing.module';
 import { SuiModule } from 'ng2-semantic-ui/dist';
-import { DataPrivacyPolicyComponent, TermsOfUserComponent} from './component/index';
+import { DataPrivacyPolicyComponent, TermsOfUserComponent, AboutForWaterComponent} from './component/index';
 
 @NgModule({
   imports: [
@@ -10,6 +10,6 @@ import { DataPrivacyPolicyComponent, TermsOfUserComponent} from './component/ind
     CommonModule,
     GuidelineRoutingModule
   ],
-  declarations: [TermsOfUserComponent, DataPrivacyPolicyComponent]
+  declarations: [TermsOfUserComponent, DataPrivacyPolicyComponent, AboutForWaterComponent]
 })
 export class GuidelineModule { }

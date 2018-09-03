@@ -1,14 +1,14 @@
+import { Subscription } from 'rxjs';
 import { IConceptData } from './../../interfaces';
 import { ConceptPickerService } from './../../services';
-import { ServerResponse, ResourceService, ToasterService } from '@sunbird/shared';
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angular/core';
 import * as _ from 'lodash';
 @Component({
   selector: 'app-concept-picker',
   templateUrl: './concept-picker.component.html',
   styleUrls: ['./concept-picker.component.css']
 })
-export class ConceptPickerComponent implements OnInit {
+export class ConceptPickerComponent implements OnInit, OnDestroy {
   private conceptPickerService: ConceptPickerService;
   /**
    * concept Data
@@ -35,6 +35,7 @@ export class ConceptPickerComponent implements OnInit {
    */
   showLoader = true;
   contentConcepts: any;
+  conceptDataSubscription: Subscription;
   /**
    * emits selected concepts
    */
@@ -77,7 +78,7 @@ export class ConceptPickerComponent implements OnInit {
         minSearchQueryLength: 1
       });
       setTimeout(() => {
-         document.getElementById('conceptSelector_treePicker').classList.add (this.conceptPickerClass);
+        document.getElementById('conceptSelector_treePicker').classList.add(this.conceptPickerClass);
       }, 500);
     }, 500);
   }
@@ -85,7 +86,7 @@ export class ConceptPickerComponent implements OnInit {
    * calls conceptPickerService and initConceptBrowser
    */
   ngOnInit() {
-    this.conceptPickerService.conceptData$.subscribe(apiData => {
+    this.conceptDataSubscription = this.conceptPickerService.conceptData$.subscribe(apiData => {
       if (apiData && !apiData.err) {
         this.showLoader = false;
         this.conceptData = apiData.data;
@@ -94,5 +95,11 @@ export class ConceptPickerComponent implements OnInit {
         this.showLoader = false;
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.conceptDataSubscription) {
+      this.conceptDataSubscription.unsubscribe();
+    }
   }
 }

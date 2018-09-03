@@ -1,10 +1,11 @@
+
+import {of as observableOf,  Observable } from 'rxjs';
 import { CourseHierarchyGetMockResponse,
   CourseHierarchyGetMockResponseFlagged } from './../course-player/course-player.component.mock.data';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseConsumptionHeaderComponent } from './course-consumption-header.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import {CourseConsumptionService, CourseProgressService} from '../../../services';
 import {CoreModule} from '@sunbird/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -29,13 +30,14 @@ const resourceServiceMockData = {
 class ActivatedRouteStub {
   paramsMock = {courseId: 'do_212347136096788480178', batchId: 'do_112498388508524544160'};
   queryParamsMock = {contentId: 'do_112270494168555520130'};
-  queryParams =  Observable.of(this.queryParamsMock);
-  params = {first: () => Observable.of(this.paramsMock)};
+  queryParams =  observableOf(this.queryParamsMock);
+  params = {first: () => observableOf(this.paramsMock)};
   firstChild = {
-    params : Observable.of(this.paramsMock)
+    params : observableOf(this.paramsMock),
+    queryParams: observableOf(this.queryParamsMock)
   };
   public changeFirstChildParams(params) {
-    this.firstChild.params = Observable.of(params);
+    this.firstChild.params = observableOf(params);
   }
   public changeQueryParams(params) {
     this.paramsMock = params;
@@ -65,23 +67,25 @@ describe('CourseConsumptionHeaderComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should enable resume button if course is not flagged and courseProgressData obtained from courseProgressService', () => {
+  it(`should enable resume button if course is not flagged, batch status is not "0" and
+  courseProgressData obtained from courseProgressService`, () => {
     const courseConsumptionService = TestBed.get(CourseConsumptionService);
     const courseProgressService = TestBed.get(CourseProgressService);
     const resourceService = TestBed.get(ResourceService);
     resourceService.messages = resourceServiceMockData.messages;
     resourceService.frmelmnts = resourceServiceMockData.frmelmnts;
     component.courseHierarchy = CourseHierarchyGetMockResponse.result.content;
+    component.enrolledBatchInfo = {status: 1};
     component.ngOnInit();
     component.ngAfterViewInit();
-    courseProgressService.courseProgressData.emit({});
+    courseProgressService.courseProgressData.emit({lastPlayedContentId: 'do_123'});
     expect(component.courseHierarchy).toBeDefined();
     expect(component.flaggedCourse).toBeFalsy();
     expect(component.enrolledCourse).toBeTruthy();
     expect(component.showResumeCourse).toBeFalsy();
   });
 
-  it('should not enable resume button if course is flagged and courseProgressData obtained from courseProgressService', () => {
+   it('should not enable resume button if course is flagged and courseProgressData obtained from courseProgressService', () => {
     const courseConsumptionService = TestBed.get(CourseConsumptionService);
     const courseProgressService = TestBed.get(CourseProgressService);
     const resourceService = TestBed.get(ResourceService);
@@ -97,7 +101,7 @@ describe('CourseConsumptionHeaderComponent', () => {
     expect(component.showResumeCourse).toBeTruthy();
   });
 
-  it('should not enable resume button if batchId is not present', () => {
+   it('should not enable resume button if batchId is not present', () => {
     const courseConsumptionService = TestBed.get(CourseConsumptionService);
     const courseProgressService = TestBed.get(CourseProgressService);
     const resourceService = TestBed.get(ResourceService);
@@ -110,5 +114,10 @@ describe('CourseConsumptionHeaderComponent', () => {
     expect(component.courseHierarchy).toBeDefined();
     expect(component.enrolledCourse).toBeFalsy();
     expect(component.showResumeCourse).toBeTruthy();
+  });
+  it('should unsubscribe from all observable subscriptions', () => {
+    spyOn(component.unsubscribe, 'complete');
+    component.ngOnDestroy();
+    expect(component.unsubscribe.complete).toHaveBeenCalled();
   });
 });

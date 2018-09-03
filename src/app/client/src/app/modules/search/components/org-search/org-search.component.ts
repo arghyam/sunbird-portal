@@ -1,3 +1,5 @@
+
+import {combineLatest as observableCombineLatest,  Observable } from 'rxjs';
 import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage } from '@sunbird/shared';
 import { SearchService, UserService } from '@sunbird/core';
 import { Component, OnInit, NgZone } from '@angular/core';
@@ -5,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IPagination } from '@sunbird/announcement';
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
 import { IInteractEventObject, IInteractEventEdata, IImpressionEventInput } from '@sunbird/telemetry';
 
 @Component({
@@ -205,8 +206,7 @@ export class OrgSearchComponent implements OnInit {
   }
 
   getQueryParams () {
-    Observable
-    .combineLatest(
+    observableCombineLatest(
     this.activatedRoute.params,
     this.activatedRoute.queryParams,
     (params: any, queryParams: any) => {

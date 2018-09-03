@@ -15,7 +15,24 @@ export const serverRes = {
                 me_averageRating: '4',
                 description: 'ffgg',
                 name: 'ffgh',
-                concepts: ['AI', 'ML']
+                concepts: ['AI', 'ML'],
+                contentType: '',
+                code: '',
+                framework: '',
+                userId: '',
+                userName: '',
+                badgeAssertions: [
+                    {
+                     'issuerId': 'issuerslug-93',
+                     'assertionId': 'b0a33a07-7b06-4faf-a0a4-e0cbba009227',
+                     'badgeClassImage': `https://sunbirddev.blob.core.windows.net/badgr/uploads/badges/
+                     issuer_badgeclass_ba684c5c-5490-4c16-a091-759f1e689723`,
+                     'badgeId': 'badgeslug-8',
+                     'badgeClassName': 'something',
+                     'createdTS': 1531907304511,
+                     'status': 'active'
+                    }
+                   ]
             }
         }
     },

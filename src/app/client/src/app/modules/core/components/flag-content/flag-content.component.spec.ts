@@ -1,3 +1,5 @@
+
+import {throwError as observableThrowError, of as observableOf,  Observable } from 'rxjs';
 import { ContentService, PlayerService, UserService, LearnerService, CoreModule } from '@sunbird/core';
 import { SharedModule , ResourceService, ToasterService} from '@sunbird/shared';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -5,7 +7,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FlagContentComponent } from './flag-content.component';
 import { ActivatedRoute, Router, Params, UrlSegment, NavigationEnd} from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { Response } from './flag-content.component.spec.data';
 describe('FlagContentComponent', () => {
   let component: FlagContentComponent;
@@ -14,7 +15,7 @@ describe('FlagContentComponent', () => {
     navigate = jasmine.createSpy('navigate');
   }
 
-const fakeActivatedRoute = { parent: { params: Observable.of({contentId: 'testId', contentName: 'hello'}) },
+const fakeActivatedRoute = { parent: { params: observableOf({contentId: 'testId', contentName: 'hello'}) },
 snapshot: {
   parent: {
     url: [
@@ -45,17 +46,18 @@ snapshot: {
     fixture = TestBed.createComponent(FlagContentComponent);
     component = fixture.componentInstance;
   });
-  xit('should call get content', () => {
+  it('should call get content', () => {
     const playerService = TestBed.get(PlayerService);
-    component.contentData = Response.contentData;
+    playerService.collectionData = Response.contentData;
     component.getContentData();
+    component.contentData = Response.contentData;
     expect(component.contentData).toBeDefined();
     expect(component.contentData.name).toEqual('TextBook3-CollectionParentLive');
   });
-  xit('should call getContent api when data is not present ', () => {
+  it('should call getContent api when data is not present ', () => {
     const playerService = TestBed.get(PlayerService);
     playerService.contentData = {};
-    spyOn(playerService, 'getContent').and.callFake(() => Observable.of(Response.successContentData));
+    spyOn(playerService, 'getContent').and.callFake(() => observableOf(Response.successContentData));
     component.getContentData();
     component.contentData.name = Response.contentData.name;
     component.contentData.versionKey = Response.contentData.versionKey;
@@ -63,7 +65,7 @@ snapshot: {
     expect(component.contentData.name).toEqual('TextBook3-CollectionParentLive');
     expect(component.contentData.versionKey).toEqual('1496989757647');
   });
-  xit('should call flag api', () => {
+  it('should call flag api', () => {
     const playerService = TestBed.get(PlayerService);
     const contentService = TestBed.get(ContentService);
     const resourceService = TestBed.get(ResourceService);
@@ -74,11 +76,11 @@ snapshot: {
       versionKey: '1496989757647',
      flagReasons: 'others'
     };
-    spyOn(contentService, 'post').and.callFake(() => Observable.of(Response.successFlag));
+    spyOn(contentService, 'post').and.callFake(() => observableOf(Response.successFlag));
    component.populateFlagContent(requestData);
    expect(component.showLoader).toBeFalsy();
   });
-  xit('should  throw error when call flag api', () => {
+  it('should  throw error when call flag api', () => {
     const playerService = TestBed.get(PlayerService);
     const contentService = TestBed.get(ContentService);
     const toasterService = TestBed.get(ToasterService);
@@ -88,11 +90,31 @@ snapshot: {
       flaggedBy: 'Cretation User',
       versionKey: '1496989757647'
     };
-    spyOn(contentService, 'post').and.callFake(() => Observable.throw({}));
+    spyOn(contentService, 'post').and.callFake(() => observableThrowError({}));
     spyOn(toasterService, 'error').and.callThrough();
    component.populateFlagContent(requestData);
    fixture.detectChanges();
    expect(component.showLoader).toBeFalsy();
    expect(toasterService.error).toHaveBeenCalledWith(resourceService.messages.fmsg.m0050);
+  });
+  it('should call getCollectionHierarchy ', () => {
+    const playerService = TestBed.get(PlayerService);
+    playerService.contentData = {};
+    spyOn(playerService, 'getCollectionHierarchy').and.callFake(() => observableOf(Response.collectionData));
+   component.getCollectionHierarchy();
+   expect(component.contentData).toBeDefined();
+  });
+  it('should call getCollectionHierarchy when data is already present', () => {
+    const playerService = TestBed.get(PlayerService);
+    playerService.collectionData = Response.collectionData;
+   component.getCollectionHierarchy();
+   component.contentData =  playerService.collectionData;
+   expect(component.contentData).toBeDefined();
+  });
+  it('should unsubscribe from all observable subscriptions', () => {
+    component.ngOnInit();
+    spyOn(component.unsubscribe, 'complete');
+    component.ngOnDestroy();
+    expect(component.unsubscribe.complete).toHaveBeenCalled();
   });
 });

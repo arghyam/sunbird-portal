@@ -1,6 +1,8 @@
+
+import {takeUntil, first} from 'rxjs/operators';
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription ,  Subject } from 'rxjs';
 import { RendererService, OrganisationService, DownloadService } from './../../services';
 import { UserService, SearchService } from '@sunbird/core';
 import { ResourceService, ServerResponse, ToasterService } from '@sunbird/shared';
@@ -23,6 +25,11 @@ import * as _ from 'lodash';
  * @class OrganisationComponent
  */
 export class OrganisationComponent implements OnDestroy {
+  /**
+   * Variable to gather and unsubscribe all observable subscriptions in this component.
+   */
+  public unsubscribe = new Subject<void>();
+
   interactObject: any;
   /**
    * Contains time period - last 7days, 14days, and 5weeks
@@ -147,6 +154,7 @@ export class OrganisationComponent implements OnDestroy {
 	 * telemetryImpression object for org admin dashboard page
 	*/
   telemetryImpression: IImpressionEventInput;
+  subscription: Subscription;
 
   /**
    * Default method of OrganisationService class
@@ -229,7 +237,9 @@ export class OrganisationComponent implements OnDestroy {
       dataset: this.datasetType === 'creation' ? 'ORG_CREATION' : 'ORG_CONSUMPTION'
     };
 
-    this.orgService.getDashboardData(params).subscribe(
+    this.orgService.getDashboardData(params).pipe(
+    takeUntil(this.unsubscribe))
+    .subscribe(
       (data: DashboardData) => {
         this.blockData = data.numericData;
         this.graphData = this.rendererService.visualizer(data, this.chartType);
@@ -348,8 +358,9 @@ export class OrganisationComponent implements OnDestroy {
       }
       this.isMultipleOrgs = this.userService.userProfile.organisationIds.length > 1 ? true : false;
       this.showLoader = false;
+      this.validateIdentifier(this.identifier);
     } else {
-      this.userDataSubscription = this.userService.userData$.first().subscribe(
+      this.userDataSubscription = this.userService.userData$.pipe(first()).subscribe(
         user => {
           if (user && user.userProfile.organisationIds && user.userProfile.organisationIds.length) {
             this.getOrgDetails(user.userProfile.organisationIds);
@@ -374,7 +385,9 @@ export class OrganisationComponent implements OnDestroy {
       dataset: this.datasetType === 'creation' ? 'ORG_CREATION' : 'ORG_CONSUMPTION'
     };
 
-    this.downloadService.getReport(option).subscribe(
+    this.downloadService.getReport(option).pipe(
+    takeUntil(this.unsubscribe))
+    .subscribe(
       (data: ServerResponse) => {
         this.showDownloadSuccessModal = true;
         this.disabledClass = false;
@@ -394,7 +407,9 @@ export class OrganisationComponent implements OnDestroy {
    */
   getOrgDetails(orgIds: string[]) {
     if (orgIds && orgIds.length) {
-      this.searchService.getOrganisationDetails({ orgid: orgIds }).subscribe(
+      this.searchService.getOrganisationDetails({ orgid: orgIds }).pipe(
+      takeUntil(this.unsubscribe))
+      .subscribe(
         (data: ServerResponse) => {
           if (data.result.response.content) {
             this.myOrganizations = data.result.response.content;
@@ -421,5 +436,7 @@ export class OrganisationComponent implements OnDestroy {
     if (this.userDataSubscription) {
       this.userDataSubscription.unsubscribe();
     }
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

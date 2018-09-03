@@ -1,3 +1,5 @@
+
+import { combineLatest,  Observable } from 'rxjs';
 import { WorkSpace } from './../../classes/workspace';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +11,6 @@ import {
 import { WorkSpaceService } from '../../services';
 import { IPagination } from '@sunbird/announcement';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs/Observable';
 import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
 import { IInteractEventInput, IImpressionEventInput } from '@sunbird/telemetry';
 /**
@@ -111,6 +112,10 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
   sort: object;
   state: string;
   /**
+   * userRoles
+  */
+  userRoles = [];
+  /**
   * To call resource service which helps to use language constant
  */
   public resourceService: ResourceService;
@@ -160,7 +165,7 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
   }
 
   ngOnInit() {
-    Observable.combineLatest(
+    combineLatest(
       this.activatedRoute.params,
       this.activatedRoute.queryParams,
       (params: any, queryParams: any) => {
@@ -200,7 +205,7 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
       const sort_by = bothParams.queryParams.sort_by;
       const sortType = bothParams.queryParams.sortType;
       this.sort = {
-        [sort_by]: sortType
+        [sort_by]: _.toString(sortType)
       };
     } else {
       this.sort = { lastUpdatedOn: this.config.appConfig.WORKSPACE.lastUpdatedOn };
@@ -211,7 +216,6 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
         status: ['Review'],
         createdFor: this.userService.RoleOrgMap && _.compact(_.union(rolesMap['CONTENT_REVIEWER'],
           rolesMap['BOOK_REVIEWER'],
-          rolesMap['FLAG_REVIEWER'],
           rolesMap['CONTENT_REVIEW'])),
         createdBy: { '!=': this.userService.userid },
         objectType: this.config.appConfig.WORKSPACE.objectType,
@@ -224,9 +228,11 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
       },
       limit: limit,
       offset: (pageNumber - 1) * (limit),
-      query: bothParams.queryParams.query,
+      query: _.toString(bothParams.queryParams.query),
       sort_by: this.sort
     };
+    const contentType = this.getContentType && this.getContentType().contentType;
+    searchParams.filters.contentType = contentType;
     this.search(searchParams).subscribe(
       (data: ServerResponse) => {
         if (data.result.count && data.result.content.length > 0) {
@@ -291,5 +297,26 @@ export class UpForReviewComponent extends WorkSpace implements OnInit {
     this.telemetryImpression.edata.visits = this.inviewLogs;
     this.telemetryImpression.edata.subtype = 'pageexit';
     this.telemetryImpression = Object.assign({}, this.telemetryImpression);
+  }
+  getContentType() {
+    this.userService.userData$.subscribe(
+      (user: IUserData) => {
+        this.userRoles = user.userProfile.userRoles;
+      });
+    const request = {
+      contentType: []
+    };
+
+    if (_.indexOf(this.userRoles, 'BOOK_REVIEWER') !== -1) {
+      request.contentType = ['TextBook'];
+    }
+    if (_.indexOf(this.userRoles, 'CONTENT_REVIEWER') !== -1) {
+     request.contentType = _.without(this.config.appConfig.WORKSPACE.contentType, 'TextBook');
+    }
+    if (_.indexOf(this.userRoles, 'CONTENT_REVIEWER') !== -1 &&
+      _.indexOf(this.userRoles, 'BOOK_REVIEWER') !== -1) {
+     request.contentType = this.config.appConfig.WORKSPACE.contentType;
+    }
+    return request;
   }
 }

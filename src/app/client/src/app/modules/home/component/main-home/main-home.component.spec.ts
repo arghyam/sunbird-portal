@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { SuiModule } from 'ng2-semantic-ui';
 import { SlickModule } from 'ngx-slick';
-import 'rxjs/add/operator/mergeMap';
+
 import { Ng2IziToastModule } from 'ng2-izitoast';
 import { AnnouncementService, UserService, CoursesService, LearnerService, FrameworkService, ContentService,
    PlayerService } from '@sunbird/core';
@@ -73,33 +73,39 @@ class ActivatedRouteStub {
   it('should subscribe to user service', () => {
     const userService = TestBed.get(UserService);
     const learnerService = TestBed.get(LearnerService);
-    spyOn(learnerService, 'get').and.returnValue(Observable.of(testData.userSuccess));
+    userService._userData$.next({ err: null, userProfile: testData.userSuccess});
     userService.getUserProfile();
     fixture.detectChanges();
     component.populateUserProfile();
-   // fixture.detectChanges();
     expect(component.showLoader).toBeFalsy();
     expect(component.toDoList).toBeDefined();
   });
   it('should throw error in user Service ', () => {
     const userService = TestBed.get(UserService);
     const learnerService = TestBed.get(LearnerService);
-    spyOn(learnerService, 'get').and.returnValue(Observable.throw(testData.userError));
+    userService._userData$.next({ err: testData.userError, userProfile: null});
     userService.getUserProfile();
     fixture.detectChanges();
     component.populateUserProfile();
-   // fixture.detectChanges();
     expect(component.showLoader).toBeFalsy();
   });
   it('should subscribe to course service', () => {
     const courseService = TestBed.get(CoursesService);
     const learnerService = TestBed.get(LearnerService);
-    spyOn(learnerService, 'get').and.returnValue(Observable.of(testData.courseSuccess));
+    courseService._enrolledCourseData$.next({ err: null, enrolledCourses: testData.courseSuccess});
     courseService.initialize();
     fixture.detectChanges();
     component.populateEnrolledCourse();
-   // fixture.detectChanges();
     expect(component.showLoader).toBeFalsy();
     expect(component.toDoList).toBeDefined();
+  });
+ it('should subscribe to course service throw error', () => {
+    const courseService = TestBed.get(CoursesService);
+    const learnerService = TestBed.get(LearnerService);
+    courseService._enrolledCourseData$.next({ err: testData.courseError, enrolledCourses: null});
+    courseService.initialize();
+    fixture.detectChanges();
+    component.populateEnrolledCourse();
+    expect(component.showLoader).toBeFalsy();
   });
 });

@@ -1,10 +1,10 @@
 import { SearchService } from './../search/search.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SearchParam } from '@sunbird/core';
-import { ServerResponse, ToasterService, ResourceService } from '@sunbird/shared';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ServerResponse, ToasterService, ResourceService, ConfigService, BrowserCacheTtlService } from '@sunbird/shared';
 import * as _ from 'lodash';
+import { CacheService } from 'ng2-cache-service';
 @Injectable()
 export class ConceptPickerService {
   private searchService: SearchService;
@@ -26,13 +26,19 @@ export class ConceptPickerService {
     * Constructor to create injected service(s) object
     * @param {SearchService} searchService Reference of SearchService
   */
-  constructor(searchService: SearchService, toasterService: ToasterService, resourceService: ResourceService) {
+  constructor(searchService: SearchService, toasterService: ToasterService, resourceService: ResourceService,
+    private cacheService: CacheService, private configService: ConfigService,  private browserCacheTtlService: BrowserCacheTtlService) {
     this.searchService = searchService;
     this.toasterService = toasterService;
     this.resourceService = resourceService;
   }
   public initialize() {
-    // this.getConcept(0, 300);
+    const data: any | null = this.cacheService.get('concepts');
+    if (data) {
+      this._conceptData$.next({ err: null, data: data });
+    } else {
+      this.getConcept(0, 200);
+    }
   }
   /**
   * call search api with objectType =['Concept']
@@ -47,7 +53,8 @@ export class ConceptPickerService {
     };
     this.searchService.compositeSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {
-        if (apiResponse.result && _.isArray(apiResponse.result.concepts)) {
+        if (apiResponse.result && _.isArray(apiResponse.result.concepts) &&
+        apiResponse.result.concepts.length > 0) {
           _.forEach(apiResponse.result.concepts, (value) => {
             this._concepts.push(value);
           });
@@ -58,10 +65,12 @@ export class ConceptPickerService {
           } else {
             this.loadDomains();
           }
+        } else {
+          this._conceptData$.next({ err: 'no result' , data: null });
         }
       },
       err => {
-        this.toasterService.error(this.resourceService.messages.fmsg.m0015);
+        this._conceptData$.next({ err: 'no result' , data: null });
       }
     );
   }
@@ -96,6 +105,10 @@ export class ConceptPickerService {
             domain['nodes'] = domainChild;
             domains.push(domain);
           });
+          this.cacheService.set('concepts', domains,
+            {
+              maxAge: this.browserCacheTtlService.browserCacheTtl
+            });
           this._conceptData$.next({ err: null, data: domains });
         }
       },

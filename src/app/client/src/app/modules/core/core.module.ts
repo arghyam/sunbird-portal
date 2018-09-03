@@ -15,7 +15,7 @@ import {
 import {
   MainHeaderComponent, MainMenuComponent, SearchComponent, ConceptPickerComponent, DataDrivenFilterComponent,
   ErrorPageComponent, SortByComponent, FlagContentComponent, ContentPlayerMetadataComponent,
-  BreadcrumbsComponent, LanguageDropdownComponent
+  BreadcrumbsComponent, LanguageDropdownComponent, ProminentFilterComponent
 } from './components';
 import { AuthGuard } from './guard/auth-gard.service';
 import { CacheService } from 'ng2-cache-service';

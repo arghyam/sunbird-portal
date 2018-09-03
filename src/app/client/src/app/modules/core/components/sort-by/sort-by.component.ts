@@ -7,11 +7,11 @@ import * as _ from 'lodash';
   templateUrl: './sort-by.component.html',
   styles: [`
          >>> .ui.dropdown:not(.button)>.default.text {
-          display: none;
+              display: none;
            }
           .ui.inline.dropdown.search-dropdown {
-           margin-left: -5px;
-           box-sizing: border-box;
+              margin-left: 5px;
+              box-sizing: border-box;
            }
        `]
 })
@@ -67,6 +67,5 @@ export class SortByComponent implements OnInit {
     this.queryParams['sort_by'] = this.sortByOption;
     this.route.navigate([this.url], { queryParams: this.queryParams });
   }
-
 
 }

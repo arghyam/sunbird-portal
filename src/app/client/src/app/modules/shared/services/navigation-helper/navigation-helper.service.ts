@@ -1,3 +1,5 @@
+
+import {filter} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { CacheService } from 'ng2-cache-service';
@@ -13,6 +15,10 @@ export class NavigationHelperService {
   static singletonInstance: NavigationHelperService;
 
   private _resourceCloseUrl: UrlHistory;
+  /**
+   * Stores workspaceCloseUrl
+   */
+  private _workspaceCloseUrl: UrlHistory;
   /**
    * Stores routing history
    */
@@ -32,7 +38,7 @@ export class NavigationHelperService {
    * @memberof NavigationHelperService
    */
   private storeUrlHistory(): void {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe((urlAfterRedirects: NavigationEnd) => {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((urlAfterRedirects: NavigationEnd) => {
       const queryParams = this.activatedRoute.root.children[this.activatedRoute.root.children.length - 1].snapshot.queryParams;
       const url = urlAfterRedirects.url.split('?')[0];
       let history: UrlHistory;
@@ -52,12 +58,29 @@ export class NavigationHelperService {
   storeResourceCloseUrl() {
     this._resourceCloseUrl = this._history[this._history.length - 1];
   }
+  storeWorkSpaceCloseUrl() {
+    this._workspaceCloseUrl = this.history[this._history.length - 1];
+  }
   public navigateToResource(defaultUrl: string = '/home') {
     if (this._resourceCloseUrl && this._resourceCloseUrl.url) {
       if (this._resourceCloseUrl.queryParams) {
         this.router.navigate([this._resourceCloseUrl.url], {queryParams: this._resourceCloseUrl.queryParams});
       } else {
         this.router.navigate([this._resourceCloseUrl.url]);
+      }
+    } else {
+      this.router.navigate([defaultUrl]);
+    }
+  }
+
+  public navigateToWorkSpace(defaultUrl: string = '/home') {
+    if (this._workspaceCloseUrl && this._workspaceCloseUrl.url) {
+      if (this._workspaceCloseUrl.queryParams) {
+        this.router.navigate([this._workspaceCloseUrl.url], {queryParams: this._workspaceCloseUrl.queryParams});
+        this._workspaceCloseUrl = undefined;
+      } else {
+        this.router.navigate([this._workspaceCloseUrl.url]);
+        this._workspaceCloseUrl = undefined;
       }
     } else {
       this.router.navigate([defaultUrl]);

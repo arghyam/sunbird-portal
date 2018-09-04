@@ -82,6 +82,7 @@ export class UserService {
    * Reference of public data service.
    */
   public publicDataService: PublicDataService;
+  private _contentChannelFilter: string;
 
   /**
   * constructor
@@ -215,6 +216,21 @@ export class UserService {
     this.contentService.channelId = this._channel;
     this.publicDataService.rootOrgId = this._rootOrgId;
     this.publicDataService.channelId = this._channel;
+  }
+
+  setContentChannelFilter() {
+    try {
+      const contentChannelFilter = (<HTMLInputElement>document.getElementById('contentChannelFilter')).value;
+      if (contentChannelFilter && contentChannelFilter.toLowerCase() === 'self') {
+        this._contentChannelFilter = this.channel;
+      }
+    } catch (error) {
+      console.log('unable to set content channel filter');
+    }
+  }
+
+  get contentChannelFilter() {
+    return this._contentChannelFilter;
   }
 
   get editorChannelFilter() {

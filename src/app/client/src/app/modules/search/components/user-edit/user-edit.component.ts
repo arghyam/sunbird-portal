@@ -69,6 +69,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
    */
   public routerNavigationService: RouterNavigationService;
 
+  queryParam: any;
+
   /**
 	 * Constructor to create injected service(s) object
 	 *
@@ -92,6 +94,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
     this.toasterService = toasterService;
     this.permissionService = permissionService;
     this.routerNavigationService = routerNavigationService;
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.queryParam = { ...queryParams };
+    });
   }
 
   /**
@@ -100,7 +105,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 *
 	 */
   redirect(): void {
-    this.route.navigate(['../../'], {relativeTo: this.activatedRoute});
+    this.route.navigate(['../../'], {relativeTo: this.activatedRoute, queryParams: this.queryParam});
   }
 
   populateOrgName() {

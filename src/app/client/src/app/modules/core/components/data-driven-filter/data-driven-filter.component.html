@@ -11,10 +11,10 @@
           <div content>
             <div *ngIf="formFieldProperties && formInputData && showSearchedParam" class="twelve wide column content margin-bottom-15">
               <span *ngFor="let field of formFieldProperties">
-                <span class="padded chip margin-top--5 margin-right-10" *ngIf='formInputData[field.code] && formInputData[field.code].length > 0 && showFilter'>
+                <span class="padded chip margin-top--5 margin-right-10" *ngIf='formInputData[field.code] && formInputData[field.code].length > 0'>
                   {{field.name}}:
                   <span *ngFor="let item of formInputData[field.code]">
-                    <a class="ui label margin-top--5" *ngIf='!isObject(item) '>
+                    <a class="ui label margin-top--5" *ngIf='!isObject(item)'>
                       {{item}}
                       <i class="delete icon" (click)="removeFilterSelection(field.code,item)"></i>
                     </a>

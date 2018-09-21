@@ -102,7 +102,7 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     try {
-      this.exploreButtonVisibility = (<HTMLInputElement>document.getElementById('exploreButtonVisibility')).value;
+      this.exploreButtonVisibility = 'false'; // (<HTMLInputElement>document.getElementById('exploreButtonVisibility')).value;
     } catch (error) {
       this.exploreButtonVisibility = 'false';
     }

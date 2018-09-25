@@ -73,6 +73,18 @@
                 </div>
             </div>
         </ng-template>
+        <div class="center aligned twelve wide tablet computer only column" *ngIf="userService.userid;">
+            <div class="ui grid margin-top-0">
+                <div class="one wide column"></div>
+                <div class="two wide column">
+                </div>
+                <div class="six wide column"></div>
+                <div class="two wide right floated right aligned column">
+                    <app-language-dropdown></app-language-dropdown>
+                </div>
+                <div class="one wide column"></div>
+            </div>
+        </div>
         <div class="one wide tablet computer only column"></div>
     </div>
 </div>
@@ -153,7 +165,7 @@
                 </div>
                 <div class="six wide column"></div>
                 <div class="two wide right floated right aligned column">
-                    <app-language-dropdown [redirectUrl]="'explore/1'"></app-language-dropdown>
+                    <app-language-dropdown></app-language-dropdown>
                 </div>
                 <div class="one wide column"></div>
             </div>
@@ -171,7 +183,7 @@
             </div>
             <div class="ui grid margin-none">
                 <div class="twelve wide column padding-10">
-                    <app-language-dropdown [redirectUrl]="'explore/1'"></app-language-dropdown>
+                    <app-language-dropdown></app-language-dropdown>
                 </div>
             </div>
         </div>

@@ -36,7 +36,9 @@ let envVariables = {
   learner_Service_Local_BaseUrl: env.sunbird_learner_service_local_base_url || 'http://learner-service:9000',
   content_Service_Local_BaseUrl: env.sunbird_content_service_local_base_url || 'http://content_service_content_service:5000',
   ANDROID_APP_URL: env.sunbird_android_app_url || 'http://www.sunbird.org',
-  EXPLORE_BUTTON_VISIBILITY: env.sunbird_explore_button_visibility || true
+  EXPLORE_BUTTON_VISIBILITY: env.sunbird_explore_button_visibility || true,
+  ISSUE_FORWATER_URL: env.issue_forwater_url || 'https://issues.jaldhara.in',
+  DISCUSS_FORWATER_URL: env.discuss_forwater_url || 'https://discuss.jaldhara.in'
 }
 
 //jaldhara specific env. variables

@@ -128,7 +128,10 @@ export class OrganizationUploadComponent implements OnInit, OnDestroy {
       headers: this.config.appConfig.ADMIN_UPLOAD.SAMPLE_ORGANIZATION_HEADERS_CSV,
       useBom: false
     };
-    const csv = new Angular5Csv({}, 'Sample_Organizations', options);
+    const csv = new Angular5Csv([{orgName: '',
+                                 isRootOrg: '',
+                                 channel: 'Jaldhara',
+                                 description: ''}], 'Sample_Organizations', options);
   }
   /**
  * This method helps to call uploadOrg method to upload a csv file

@@ -45,7 +45,9 @@ const jaldhara_env_variables = {
   JALDHARA_OPPORTUNITIES_RSS_FEED_URL: env.jaldhara_opportunities_rssfeed_url || 'http://www.indiawaterportal.org/rss-opportunities-feed',
   JALDHARA_QUESTION_RSS_FEED_URL: env.jaldhara_question_rssfeed_url || 'http://www.indiawaterportal.org/rss-questions-feed',
   JALDHARA_RESEARCH_PAPERS_RSS_FEED_URL: env.jaldhara_research_papers_rssfeed_url || 'http://www.indiawaterportal.org/rss-research-papers-feeds',
-  EDITOR_CHANNEL_FILTER_TYPE: env.sunbird_editor_channel_filter_type || 'all'
+  EDITOR_CHANNEL_FILTER_TYPE: env.sunbird_editor_channel_filter_type || 'all',
+  ISSUE_FORWATER_URL: env.issue_forwater_url || 'https://issues.jaldhara.in',
+  DISCUSS_FORWATER_URL: env.discuss_forwater_url || 'https://discuss.jaldhara.in'
 }
 
 // Combine both env variables

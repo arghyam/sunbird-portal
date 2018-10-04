@@ -60,11 +60,11 @@ module.exports = {
       }, function (err, results) {
         if (err) {}
         responseObj.logo = results.logo
-          ? results.logo : baseUrl + '/assets/images/sunbird_logo.png'
+          ? results.logo : envHelper.JALDHARA_LOGO ? envHelper.JALDHARA_LOGO : baseUrl + '/assets/images/sunbird_logo.png'
         responseObj.poster = results.poster
-          ? results.poster : baseUrl + '/assets/images/sunbird_logo.png'
+          ? results.poster : envHelper.JALDHARA_LOGO ? envHelper.JALDHARA_LOGO : baseUrl + '/assets/images/sunbird_logo.png'
         responseObj.favicon = results.favicon
-          ? results.favicon : baseUrl + '/assets/images/favicon.ico'
+          ? results.favicon : envHelper.JALDHARA_FAVICON_ICON ? envHelper.JALDHARA_FAVICON_ICON : baseUrl + '/assets/images/favicon.ico'
         responseObj.appLogo = results.appLogo
           ? results.appLogo : responseObj.logo
         module.exports.getSucessResponse(res, 'api.tenant.info', responseObj, req)

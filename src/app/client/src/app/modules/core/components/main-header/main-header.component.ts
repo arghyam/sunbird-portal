@@ -30,6 +30,8 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
   queryParamLanguage: string;
   showExploreHeader = false;
   showQrmodal = false;
+  confluenceIssueUrl: string;
+  confluenceDiscussUrl: string;
   /**
    * tenant name
    */
@@ -98,6 +100,8 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
     this.permissionService = permissionService;
     this.userService = userService;
     this.tenantService = tenantService;
+    this.confluenceIssueUrl = (<HTMLInputElement>document.getElementById('issueForwateUrl')).value;
+    this.confluenceDiscussUrl = (<HTMLInputElement>document.getElementById('discussForwaterUrl')).value;
   }
 
   ngOnInit() {

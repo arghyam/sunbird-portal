@@ -139,6 +139,8 @@ function getLocals(req) {
   locals.contentChannelFilter = envHelper.CONTENT_CHANNEL_FILTER_TYPE;
   locals.exploreButtonVisibility = envHelper.EXPLORE_BUTTON_VISIBILITY;
   locals.editorChannelFilter = envHelper.EDITOR_CHANNEL_FILTER_TYPE;
+  locals.issueForwateUrl = envHelper.ISSUE_FORWATER_URL;
+  locals.discussForwaterUrl = envHelper.DISCUSS_FORWATER_URL;
   return locals;
 }
 

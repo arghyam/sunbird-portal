@@ -1,7 +1,7 @@
 {
   "name": "player",
   "author": "forwater",
-  "version": "1.7.32",
+  "version": "1.7.33",
   "buildNumber": "3",
   "private": true,
   "devDependencies": {

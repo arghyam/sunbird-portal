@@ -69,6 +69,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
    */
   public routerNavigationService: RouterNavigationService;
 
+  queryParam: any;
+
   /**
 	 * Constructor to create injected service(s) object
 	 *
@@ -92,6 +94,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
     this.toasterService = toasterService;
     this.permissionService = permissionService;
     this.routerNavigationService = routerNavigationService;
+    // Forwater related code changes
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      this.queryParam = { ...queryParams };
+    });
   }
 
   /**
@@ -100,7 +106,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 	 *
 	 */
   redirect(): void {
-    this.route.navigate(['../../'], { relativeTo: this.activatedRoute });
+    this.route.navigate(['../../'], {relativeTo: this.activatedRoute, queryParams: this.queryParam});
   }
 
   populateOrgName() {
@@ -201,7 +207,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
         this.allRoles = this.permissionService.allRoles;
       }
       this.allRoles = _.filter(this.allRoles, (role) => {
-        return role.role !== 'ORG_ADMIN' && role.role !== 'SYSTEM_ADMINISTRATION' && role.role !== 'ADMIN';
+        return role.role !== 'SYSTEM_ADMINISTRATION' && role.role !== 'ADMIN' && role.role !== 'COURSE_CREATOR';
+        // return role.role !== 'ORG_ADMIN' && role.role !== 'SYSTEM_ADMINISTRATION' && role.role !== 'ADMIN';
       });
     });
     _.remove(this.allRoles, { role: 'PUBLIC' });

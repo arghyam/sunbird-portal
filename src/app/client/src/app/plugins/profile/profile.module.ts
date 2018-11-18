@@ -18,6 +18,7 @@ import { ProfileBadgeComponent } from './components/profile-badge/profile-badge.
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { NgInviewModule } from 'angular-inport';
 import { TelemetryModule } from '@sunbird/telemetry';
+import { UserRegisteredComponent, OrgRegisteredComponent } from './components';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +41,9 @@ import { TelemetryModule } from '@sunbird/telemetry';
     EditUserSkillsComponent,
     EditUserAdditionalInfoComponent,
     ProfileBadgeComponent,
-    MenuItemComponent],
+    MenuItemComponent,
+    UserRegisteredComponent,
+    OrgRegisteredComponent],
   providers: [ProfileService],
   entryComponents: [ProfileBadgeComponent, MenuItemComponent]
 })

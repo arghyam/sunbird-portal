@@ -55,12 +55,20 @@
                                     <div class="content ">
                                         <div class="workspace-navigate">
                                             <i class='database big icon primary-text-color-sunbird'></i>
-                                            <span class="workspace-navigate-heading">{{resourceService.frmelmnts.lbl.viewworkspace}}</span>
+                                            <span class="workspace-navigate-heading">{{resourceService.frmelmnts.lbl.myworkspace}}</span>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
+
+                        <!-- <div class="twelve wide column" *ngIf='permissionService.permissionAvailable' appPermission [permission]='admin'>
+                        <app-user-registered></app-user-registered>
+                        </div>
+
+                        <div class="twelve wide column" *ngIf='permissionService.permissionAvailable' appPermission [permission]='admin'>
+                        <app-org-registered></app-org-registered>
+                        </div> -->
 
                         <div class="twelve wide column" *ngIf="contributions && contributions.length > 0">
                             <div class="ui raised segment">
@@ -85,7 +93,7 @@
                             </div>
                         </div>
 
-                        <div class="twelve wide column">
+                        <div class="twelve wide column" style="display:none;">
                             <div class="ui raised segment blur-content">
                                 <div class="header">
                                     <span class="segment-heading">Member of</span>
@@ -128,8 +136,8 @@
                             </div>
                         </div>
 
-                        <div class="twelve wide column blur-content">
-                            <div class="ui raised segment ">
+                        <div class="twelve wide column blur-content" style="display:none;">
+                            <div class="ui raised segment blur-content">
                                 <div class="header">
                                     <span class="segment-heading">Member of</span>
                                 </div>

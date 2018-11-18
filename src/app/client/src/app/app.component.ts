@@ -106,6 +106,7 @@ export class AppComponent implements OnInit {
         });
       });
     }
+    this.initTenantService();
   }
   initializeLogedInsession() {
     this.userService.startSession();
@@ -206,7 +207,7 @@ export class AppComponent implements OnInit {
     this.tenantService.tenantData$.subscribe(
       data => {
         if (data && !data.err) {
-          document.title = this.userService.rootOrgName || data.tenantData.titleName;
+          document.title = data.tenantData.titleName;
           document.querySelector('link[rel*=\'icon\']').setAttribute('href', data.tenantData.favicon);
         }
       }

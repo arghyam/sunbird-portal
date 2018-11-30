@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terms-of-user.component.css']
 })
 export class TermsOfUserComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

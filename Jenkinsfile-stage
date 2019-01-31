@@ -6,6 +6,11 @@ node('master') {
 
     try {
 
+       stage('Docker-taging') {
+	sh '''
+	   docker tag forwater/player:1.10.1-bronze forwater/player:1.10.1-silver
+	   '''
+	}
 
        stage('Docker-push') {
 

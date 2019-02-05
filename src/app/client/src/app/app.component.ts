@@ -86,6 +86,9 @@ export class AppComponent implements OnInit {
     this.telemetryService.syncEvents();
   }
   ngOnInit() {
+    
+    // Verify jenkins job
+    console.log('Test jenkins for staging');
     const fingerPrint2 = new Fingerprint2();
     this.resourceService.initialize();
     this.navigationHelperService.initialize();

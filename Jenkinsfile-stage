@@ -22,6 +22,11 @@ node('master') {
            sh('sudo ./dockerPushToRepo-stage.sh')
 }
 
+	   stage('Docker-deploy'){
+        sh '''
+             ansible-playbook -i /home/deploy/ansible/dev-deploy/inventory/stage --extra-vars remote=stage /home/deploy/ansible/dev-deploy/stage-deploy.yml
+
+           '''
 }
 
 

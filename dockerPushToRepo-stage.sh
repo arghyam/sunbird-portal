@@ -12,6 +12,7 @@ name=$(e "${m}" "name")
 version=$(e "${m}" "version")
 
 artifactLabel=${ARTIFACT_LABEL:-silver}
+docker tag ${org}/${name}:${version}-bronze ${org}/${name}:${version}-${artifactLabel}
 
 #docker login -u "${hubuser}" -p$dock-pass
 echo $artifactLabel

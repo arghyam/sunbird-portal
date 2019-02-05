@@ -6,6 +6,12 @@ node('master') {
 
     try {
 
+       stage('Checkout'){
+
+	checkout scm
+	
+	}
+
        stage('Docker-push') {
 
           withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'dockerpassword', usernameVariable:'dockerusername')]) {

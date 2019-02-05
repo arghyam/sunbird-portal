@@ -544,6 +544,9 @@ const telemetryConfig = {
 
 telemetry.init(telemetryConfig)
 
+// Verify jenkins job
+console.log('Test jenkins for staging');
+
 
 
 

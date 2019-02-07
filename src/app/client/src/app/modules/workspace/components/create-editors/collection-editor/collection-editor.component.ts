@@ -177,8 +177,15 @@ export class CollectionEditorComponent implements OnInit, AfterViewInit, OnDestr
       overlay: false,
       overlayColor: '',
       history: false,
+      onOpening: () => {
+        const bres = document.getElementById('collectionEditor');
+        if (bres !== null) {
+          document.body.style.overflowY = 'hidden';
+        }
+      },
       onClosing: () => {
         this._zone.run(() => {
+          document.body.style.overflowY = 'auto';
           this.closeModal();
         });
       }

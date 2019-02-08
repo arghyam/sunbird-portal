@@ -21,8 +21,14 @@ node('master') {
             }
            sh('sudo ./dockerPushToRepo-prod.sh')
 
-
 }
+           stage('Docker-deploy'){
+        sh '''
+             ansible-playbook -i /home/deploy/ansible/dev-deploy/inventory/prod --extra-vars remote=prod /home/deploy/ansible/dev-deploy/prod-deploy.yml
+
+           '''
+}
+
 }
 
     catch (err) {

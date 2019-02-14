@@ -1,8 +1,8 @@
 {
   "name": "player",
   "author": "forwater",
-  "version": "1.9.0",
-  "dockerVersionNumber": "1.10.3",
+  "version": "1.14.0",
+  "dockerVersionNumber": "1.14.0",
   "buildNumber": "39",
   "private": true,
   "devDependencies": {
@@ -65,7 +65,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "dev": "gulp update:index:file && NODE_ENV=local nodemon server",
+    "dev": "gulp update:index:file && nodemon server",
     "test-announcements": "mocha 'test/announcements/server/**/*.js' --reporter mochawesome",
     "preinstall": "npm install ./libs/sb_api_interceptor && npm install ./libs/sb_cache_manager  && npm install ./libs/sb_telemetry_util",
     "validate": "npm ls",

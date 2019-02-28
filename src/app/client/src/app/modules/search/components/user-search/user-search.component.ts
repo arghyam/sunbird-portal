@@ -1,4 +1,3 @@
-
 import {combineLatest as observableCombineLatest,  Observable } from 'rxjs';
 import { ServerResponse, PaginationService, ResourceService, ConfigService, ToasterService, INoResultMessage } from '@sunbird/shared';
 import { SearchService, UserService } from '@sunbird/core';
@@ -9,6 +8,7 @@ import * as _ from 'lodash';
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 import { UserSearchService } from './../../services';
 import { IInteractEventObject, IInteractEventEdata, IImpressionEventInput } from '@sunbird/telemetry';
+import { PermissionService } from '@sunbird/core';
 
 @Component({
   selector: 'app-user-search',
@@ -114,11 +114,12 @@ export class UserSearchComponent implements OnInit {
      * @param {PaginationService} paginationService Reference of PaginationService
      * @param {ActivatedRoute} activatedRoute Reference of ActivatedRoute
      * @param {ConfigService} config Reference of ConfigService
+     * @param {PermissionService} permissionService
    */
   constructor(searchService: SearchService, route: Router, private ngZone: NgZone,
     activatedRoute: ActivatedRoute, paginationService: PaginationService,
     resourceService: ResourceService, toasterService: ToasterService,
-    config: ConfigService, user: UserService, userSearchService: UserSearchService) {
+    config: ConfigService, user: UserService, userSearchService: UserSearchService, public permissionService: PermissionService) {
     this.searchService = searchService;
     this.route = route;
     this.activatedRoute = activatedRoute;
@@ -232,32 +233,63 @@ export class UserSearchComponent implements OnInit {
       decimalseparator: '.',
       showLabels: true
     };
-
     const downloadArray = [{
+      'rootOrgId': 'Root OrgId',
+      'identifier': 'User Id',
       'firstName': 'First Name',
       'lastName': 'Last Name',
-      'organisations': 'Organizations',
-      'location': 'Location',
-      'grades': 'Grades',
-      'language': 'Language',
-      'subject': 'Subject'
+      'phone': 'Phone',
+      'email': 'Email',
+      'organisation': 'Organisation',
+      'roles': 'Roles'
     }];
+    const roles = this.userProfile && this.userProfile.userRoles || [];
+    const orgId = this.userProfile && this.userProfile.organisationIds || [];
 
     _.each(this.searchList, (key, index) => {
-      downloadArray.push({
-        'firstName': key.firstName,
-        'lastName': key.lastName,
-        'organisations': 'test',
-        'location': key.location !== null ? key.location : '',
-        'grades': _.join(key.grade, ','),
-        'language': _.join(key.language, ','),
-        'subject': _.join(key.subject, ',')
-      });
+      if (key.organisations.length > 0) {
+        _.forEach(key.organisations, (val, i) => {
+          if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
+            if (val.organisationId && _.indexOf(orgId, val.organisationId) > -1) {
+              downloadArray.push({
+                'rootOrgId': key.rootOrgId,
+                'identifier': key.identifier,
+                'firstName': key.firstName,
+                'lastName': key.lastName,
+                'phone': key.phone,
+                'email': key.email,
+                'organisation': val.organisationId,
+                'roles': _.join(val.roles, ',')
+              });
+            }
+          } else {
+            downloadArray.push({
+              'rootOrgId': key.rootOrgId,
+              'identifier': key.identifier,
+              'firstName': key.firstName,
+              'lastName': key.lastName,
+              'phone': key.phone,
+              'email': key.email,
+              'organisation': val.organisationId,
+              'roles': _.join(val.roles, ',')
+            });
+          }
+        });
+      } else  {
+        downloadArray.push({
+          'rootOrgId': key.rootOrgId,
+          'identifier': key.identifier,
+          'firstName': key.firstName,
+          'lastName': key.lastName,
+          'phone': key.phone,
+          'email': key.email,
+          'organisation': '',
+          'roles': _.join(key.roles, ',')
+        });
+      }
     });
-
     return new Angular5Csv(downloadArray, 'Users', options);
   }
-
 
   /**
   * This method helps to navigate to different pages.

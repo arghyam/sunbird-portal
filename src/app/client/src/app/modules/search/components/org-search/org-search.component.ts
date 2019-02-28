@@ -8,6 +8,7 @@ import { IPagination } from '@sunbird/announcement';
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 import * as _ from 'lodash';
 import { IInteractEventObject, IInteractEventEdata, IImpressionEventInput } from '@sunbird/telemetry';
+import { PermissionService } from '@sunbird/core';
 
 @Component({
   selector: 'app-org-search',
@@ -98,7 +99,6 @@ export class OrgSearchComponent implements OnInit {
 	 * telemetryImpression
 	*/
   telemetryImpression: IImpressionEventInput;
-
   // Forwater related code changes
   public rootOrgId: string;
   /**
@@ -109,10 +109,12 @@ export class OrgSearchComponent implements OnInit {
    * @param {PaginationService} paginationService Reference of PaginationService
    * @param {ActivatedRoute} activatedRoute Reference of ActivatedRoute
    * @param {ConfigService} config Reference of ConfigService
+   * @param {PermissionService} permissionService
    */
   constructor(searchService: SearchService, route: Router,
     activatedRoute: ActivatedRoute, paginationService: PaginationService, resourceService: ResourceService,
-    toasterService: ToasterService, public ngZone: NgZone, config: ConfigService, public userService: UserService) {
+    toasterService: ToasterService, public ngZone: NgZone, config: ConfigService, public userService: UserService,
+    public permissionService: PermissionService) {
     this.searchService = searchService;
     this.route = route;
     this.activatedRoute = activatedRoute;
@@ -176,12 +178,30 @@ export class OrgSearchComponent implements OnInit {
       showLabels: true
     };
     const downloadArray = [{
-      'orgName': 'Organisation Name'
+      'orgName': 'Organisation Name',
+      'identifier': 'Org ID',
+      'rootOrgId': 'RootOrgId'
     }];
+
+    const roles = this.userService.userProfile && this.userService.userProfile.userRoles || [];
+    const orgId = this.userService.userProfile && this.userService.userProfile.organisationIds || [];
+
     _.each(this.searchList, (key, index) => {
-      downloadArray.push({
-        'orgName': key.orgName
-      });
+      if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
+        if (_.indexOf(orgId, key.rootOrgId) > -1) {
+          downloadArray.push({
+            'orgName': key.orgName,
+            'identifier': key.identifier,
+            'rootOrgId': key.rootOrgId
+          });
+        }
+      } else {
+        downloadArray.push({
+          'orgName': key.orgName,
+          'identifier': key.identifier,
+          'rootOrgId': key.rootOrgId
+        });
+      }
     });
     return new Angular5Csv(downloadArray, 'Organisations', options);
   }

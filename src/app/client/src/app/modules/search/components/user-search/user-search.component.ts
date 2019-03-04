@@ -40,6 +40,7 @@ export class UserSearchComponent implements OnInit {
    * Contains list of published course(s) of logged-in user
    */
   searchList: Array<any> = [];
+  fullsearchList: Array<any> = [];
   /**
    * To navigate to other pages
    */
@@ -135,6 +136,30 @@ export class UserSearchComponent implements OnInit {
    */
   populateUserSearch() {
     this.showLoader = true;
+
+    // for full users list
+    const fullsearchParams = {
+      filters: {
+        'objectType': ['user'],
+        'rootOrgId': this.rootOrgId,
+        'grade': this.queryParams.Grades,
+        'language': this.queryParams.Language,
+        'subject': this.queryParams.Subjects,
+        'location': this.queryParams.Location,
+        'organisations.roles': this.queryParams.Roles,
+        'organisations.organisationId': this.queryParams.Organization
+      },
+      limit: 10000,
+      pageNumber: this.pageNumber,
+      query: this.queryParams.key,
+      sort_by:  {firstName: 'asc' }
+    };
+    this.searchService.userSearch(fullsearchParams).subscribe(
+      (apiResponse: ServerResponse) => {
+        this.fullsearchList = apiResponse.result.response.content;
+      }
+    );
+
     this.pageLimit = this.config.appConfig.SEARCH.PAGE_LIMIT;
     const searchParams = {
       filters: {
@@ -150,8 +175,10 @@ export class UserSearchComponent implements OnInit {
       limit: this.pageLimit,
       pageNumber: this.pageNumber,
       query: this.queryParams.key,
-      sort_by:  {firstName: 'asc' }
+      sort_by:  {firstName: 'asc' },
+      fields: ['userName']
     };
+
     this.searchService.userSearch(searchParams).subscribe(
       (apiResponse: ServerResponse) => {
         if (apiResponse.result.response.count && apiResponse.result.response.content.length > 0) {
@@ -230,7 +257,7 @@ export class UserSearchComponent implements OnInit {
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
-      decimalseparator: '.',
+      decimalseparator: 'locale',
       showLabels: true
     };
     const downloadArray = [{
@@ -240,54 +267,54 @@ export class UserSearchComponent implements OnInit {
       'lastName': 'Last Name',
       'phone': 'Phone',
       'email': 'Email',
-      'organisation': 'Organisation',
+      'organisation': 'Organization',
       'roles': 'Roles'
     }];
     const roles = this.userProfile && this.userProfile.userRoles || [];
     const orgId = this.userProfile && this.userProfile.organisationIds || [];
-
-    _.each(this.searchList, (key, index) => {
+    _.each(this.fullsearchList, (key, index) => {
       if (key.organisations.length > 0) {
         _.forEach(key.organisations, (val, i) => {
           if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
             if (val.organisationId && _.indexOf(orgId, val.organisationId) > -1) {
               downloadArray.push({
-                'rootOrgId': key.rootOrgId,
+                'rootOrgId': _.toString(key.rootOrgId),
                 'identifier': key.identifier,
                 'firstName': key.firstName,
-                'lastName': key.lastName,
-                'phone': key.phone,
-                'email': key.email,
-                'organisation': val.organisationId,
+                'lastName': key.lastName || '',
+                'phone': key.phone || '',
+                'email': key.email || '',
+                'organisation': _.toString(val.organisationId),
                 'roles': _.join(val.roles, ',')
               });
             }
           } else {
             downloadArray.push({
-              'rootOrgId': key.rootOrgId,
+              'rootOrgId':  _.toString(key.rootOrgId),
               'identifier': key.identifier,
               'firstName': key.firstName,
-              'lastName': key.lastName,
-              'phone': key.phone,
-              'email': key.email,
-              'organisation': val.organisationId,
+              'lastName': key.lastName || '',
+              'phone': key.phone || '',
+              'email': key.email || '',
+              'organisation': _.toString(val.organisationId),
               'roles': _.join(val.roles, ',')
             });
           }
         });
       } else  {
         downloadArray.push({
-          'rootOrgId': key.rootOrgId,
+          'rootOrgId': _.toString(key.rootOrgId),
           'identifier': key.identifier,
           'firstName': key.firstName,
-          'lastName': key.lastName,
-          'phone': key.phone,
-          'email': key.email,
+          'lastName': key.lastName || '',
+          'phone': key.phone || '',
+          'email': key.email || '',
           'organisation': '',
           'roles': _.join(key.roles, ',')
         });
       }
     });
+    console.log('final array', downloadArray);
     return new Angular5Csv(downloadArray, 'Users', options);
   }
 

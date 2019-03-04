@@ -1,4 +1,3 @@
-
 import { map } from 'rxjs/operators';
 import { Injectable, Input } from '@angular/core';
 import { UserService } from './../user/user.service';
@@ -175,7 +174,7 @@ export class SearchService {
         request: {
           filters: requestParam.filters,
           limit: requestParam.limit,
-          offset: (requestParam.pageNumber - 1) * requestParam.limit,
+          offset: (requestParam.pageNumber - 1) * requestParam.limit || 0,
           query: requestParam.query,
           sort_by: requestParam.sort_by
         }

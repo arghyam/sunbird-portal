@@ -38,6 +38,7 @@ export class OrgSearchComponent implements OnInit {
    * Contains list of org search result
    */
   searchList: Array<any> = [];
+  fullsearchList: Array<any> = [];
   /**
    * To navigate to other pages
    */
@@ -129,6 +130,21 @@ export class OrgSearchComponent implements OnInit {
   */
   populateOrgSearch() {
     this.showLoader = true;
+    // for full users list
+    const fullsearchParams = {
+      filters: {
+        orgTypeId: this.queryParams.OrgType
+      },
+      pageNumber: this.pageNumber,
+      query: this.queryParams.key,
+      sort_by: {orgName: 'asc'}
+    };
+    this.searchService.orgSearch(fullsearchParams).subscribe(
+      (apiResponse: ServerResponse) => {
+        this.fullsearchList = apiResponse.result.response.content;
+      }
+    );
+
     this.pageLimit = this.config.appConfig.SEARCH.PAGE_LIMIT;
     const searchParams = {
       filters: {
@@ -174,32 +190,29 @@ export class OrgSearchComponent implements OnInit {
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
-      decimalseparator: '.',
+      decimalseparator: 'locale',
       showLabels: true
     };
     const downloadArray = [{
-      'orgName': 'Organisation Name',
-      'identifier': 'Org ID',
-      'rootOrgId': 'RootOrgId'
+      'orgName': 'Organization Name',
+      'identifier': 'Org ID'
     }];
 
     const roles = this.userService.userProfile && this.userService.userProfile.userRoles || [];
     const orgId = this.userService.userProfile && this.userService.userProfile.organisationIds || [];
 
-    _.each(this.searchList, (key, index) => {
+    _.each(this.fullsearchList, (key, index) => {
       if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
         if (_.indexOf(orgId, key.rootOrgId) > -1) {
           downloadArray.push({
             'orgName': key.orgName,
-            'identifier': key.identifier,
-            'rootOrgId': key.rootOrgId
+            'identifier': _.toString(key.identifier)
           });
         }
       } else {
         downloadArray.push({
           'orgName': key.orgName,
-          'identifier': key.identifier,
-          'rootOrgId': key.rootOrgId
+          'identifier': _.toString(key.identifier)
         });
       }
     });

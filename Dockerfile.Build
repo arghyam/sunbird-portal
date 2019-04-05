@@ -1,10 +1,10 @@
 #Dockerfile for the player setup
 FROM node:8.11.0
 MAINTAINER "Manojvv" "manojv@ilimi.in"
-RUN apt update --no-install-recommends -y \
+RUN apt update --no-install-recommends -y || true \
     && apt-get install -y python \
     && apt-get install -y python-dev \
-    && apt-get update \
+    && apt-get update || true \
     && apt-get install git \
     && mkdir -p /opt/player \
     && apt-get install autoconf \
@@ -13,7 +13,7 @@ RUN apt update --no-install-recommends -y \
     && apt-get install nasm 
 WORKDIR /opt/player
 COPY * /opt/player/
-RUN apt-get update
+RUN apt-get update || true
 RUN apt-get install -y zip 
 RUN apt-get install -y bzip2 
 RUN rm -rf /var/lib/apt/lists/* 

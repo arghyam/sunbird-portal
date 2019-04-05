@@ -1,6 +1,6 @@
 FROM node:8.11-stretch
 MAINTAINER "Manojvv" "manojrpms@gmail.com"
-RUN apt-get update --no-install-recommends -y \
+RUN apt-get update --no-install-recommends -y || true \
     && apt-get install unzip
 RUN rm -rf /var/lib/apt/lists/*
 RUN adduser --uid 1001 --home /home/sunbird/ sunbird

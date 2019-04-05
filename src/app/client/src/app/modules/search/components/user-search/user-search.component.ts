@@ -261,60 +261,67 @@ export class UserSearchComponent implements OnInit {
       showLabels: true
     };
     const downloadArray = [{
-      'rootOrgId': 'Root OrgId',
-      'identifier': 'User Id',
       'firstName': 'First Name',
       'lastName': 'Last Name',
-      'phone': 'Phone',
-      'email': 'Email',
-      'organisation': 'Organization',
-      'roles': 'Roles'
+      'organisations': 'Organizations',
+      'location': 'Location',
+      'grades': 'Grades',
+      'language': 'Language',
+      'subject': 'Subject'
     }];
     const roles = this.userProfile && this.userProfile.userRoles || [];
     const orgId = this.userProfile && this.userProfile.organisationIds || [];
     _.each(this.fullsearchList, (key, index) => {
-      if (key.organisations.length > 0) {
-        _.forEach(key.organisations, (val, i) => {
-          if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
-            if (val.organisationId && _.indexOf(orgId, val.organisationId) > -1) {
-              downloadArray.push({
-                'rootOrgId': _.toString(key.rootOrgId),
-                'identifier': key.identifier,
-                'firstName': key.firstName,
-                'lastName': key.lastName || '',
-                'phone': key.phone || '',
-                'email': key.email || '',
-                'organisation': _.toString(val.organisationId),
-                'roles': _.join(val.roles, ',')
-              });
-            }
-          } else {
-            downloadArray.push({
-              'rootOrgId':  _.toString(key.rootOrgId),
-              'identifier': key.identifier,
-              'firstName': key.firstName,
-              'lastName': key.lastName || '',
-              'phone': key.phone || '',
-              'email': key.email || '',
-              'organisation': _.toString(val.organisationId),
-              'roles': _.join(val.roles, ',')
-            });
-          }
-        });
-      } else  {
-        downloadArray.push({
-          'rootOrgId': _.toString(key.rootOrgId),
-          'identifier': key.identifier,
-          'firstName': key.firstName,
-          'lastName': key.lastName || '',
-          'phone': key.phone || '',
-          'email': key.email || '',
-          'organisation': '',
-          'roles': _.join(key.roles, ',')
-        });
-      }
+      downloadArray.push({
+        'firstName': key.firstName,
+        'lastName': key.lastName,
+        'organisations': 'test',
+        'location': key.location !== null ? key.location : '',
+        'grades': _.join(key.grade, ','),
+        'language': _.join(key.language, ','),
+        'subject': _.join(key.subject, ',')
+      });
+      // if (key.organisations.length > 0) {
+      //   _.forEach(key.organisations, (val, i) => {
+      //     if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
+      //       if (val.organisationId && _.indexOf(orgId, val.organisationId) > -1) {
+      //         downloadArray.push({
+      //           'rootOrgId': _.toString(key.rootOrgId),
+      //           'identifier': key.identifier,
+      //           'firstName': key.firstName,
+      //           'lastName': key.lastName || '',
+      //           'phone': key.phone || '',
+      //           'email': key.email || '',
+      //           'organisation': _.toString(val.organisationId),
+      //           'roles': _.join(val.roles, ',')
+      //         });
+      //       }
+      //     } else {
+      //       downloadArray.push({
+      //         'rootOrgId':  _.toString(key.rootOrgId),
+      //         'identifier': key.identifier,
+      //         'firstName': key.firstName,
+      //         'lastName': key.lastName || '',
+      //         'phone': key.phone || '',
+      //         'email': key.email || '',
+      //         'organisation': _.toString(val.organisationId),
+      //         'roles': _.join(val.roles, ',')
+      //       });
+      //     }
+      //   });
+      // } else  {
+      //   downloadArray.push({
+      //     'rootOrgId': _.toString(key.rootOrgId),
+      //     'identifier': key.identifier,
+      //     'firstName': key.firstName,
+      //     'lastName': key.lastName || '',
+      //     'phone': key.phone || '',
+      //     'email': key.email || '',
+      //     'organisation': '',
+      //     'roles': _.join(key.roles, ',')
+      //   });
+      // }
     });
-    console.log('final array', downloadArray);
     return new Angular5Csv(downloadArray, 'Users', options);
   }
 

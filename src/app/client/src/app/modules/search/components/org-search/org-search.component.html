@@ -19,8 +19,7 @@
 
       </div>
 
-      <div *ngIf="!showLoader && !noResult && config.appConfig.SEARCH.ORGANISATION.DOWNLOAD_BUTTON_VISIBILITY === 'TRUE' 
-      && permissionService.permissionAvailable" appPermission [permission]="['ORG_ADMIN', 'SYSTEM_ADMINISTRATION']">
+      <div *ngIf="!showLoader && !noResult && config.appConfig.SEARCH.ORGANISATION.DOWNLOAD_BUTTON_VISIBILITY === 'TRUE'">
         <div class="ui right floated primary button" appTelemetryInteract [telemetryInteractEdata]="orgDownLoadIntractEdata"
           (click)="downloadOrganisation();">
           {{resourceService.frmelmnts?.btn?.download}}

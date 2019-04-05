@@ -194,27 +194,29 @@ export class OrgSearchComponent implements OnInit {
       showLabels: true
     };
     const downloadArray = [{
-      'orgName': 'Organization Name',
-      'identifier': 'Org ID'
+      'orgName': 'Organization Name'
     }];
 
     const roles = this.userService.userProfile && this.userService.userProfile.userRoles || [];
     const orgId = this.userService.userProfile && this.userService.userProfile.organisationIds || [];
 
     _.each(this.fullsearchList, (key, index) => {
-      if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
-        if (_.indexOf(orgId, key.rootOrgId) > -1) {
-          downloadArray.push({
-            'orgName': key.orgName,
-            'identifier': _.toString(key.identifier)
-          });
-        }
-      } else {
-        downloadArray.push({
-          'orgName': key.orgName,
-          'identifier': _.toString(key.identifier)
-        });
-      }
+      downloadArray.push({
+        'orgName': key.orgName
+      });
+      // if (_.indexOf(roles, 'ORG_ADMIN') > -1) {
+      //   if (_.indexOf(orgId, key.rootOrgId) > -1) {
+      //     downloadArray.push({
+      //       'orgName': key.orgName,
+      //       'identifier': _.toString(key.identifier)
+      //     });
+      //   }
+      // } else {
+      //   downloadArray.push({
+      //     'orgName': key.orgName,
+      //     'identifier': _.toString(key.identifier)
+      //   });
+      // }
     });
     return new Angular5Csv(downloadArray, 'Organisations', options);
   }

@@ -193,6 +193,20 @@ export class ContentEditorComponent implements OnInit, AfterViewInit, OnDestroy 
    */
   openContentEditor() {
     jQuery('#contentEditor').iziModal('open');
+    jQuery('#contentEditor').iziModal({
+      onOpening: () => {
+        const bres = document.getElementById('contentEditor');
+        if (bres !== null) {
+          document.body.style.overflowY = 'hidden';
+        }
+      },
+      onClosing: () => {
+        this._zone.run(() => {
+          document.body.style.overflowY = 'auto';
+          this.closeModal();
+        });
+      }
+    });
     window.context = {
       user: {
         id: this.userProfile.userId,
